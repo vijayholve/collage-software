@@ -1,0 +1,38 @@
+{% extends 'base/main.html' %}
+{% load custom_filters %}
+{% load static %}
+{% block css_content %}
+    <link rel="stylesheet" href="{% static 'students/attendance_table.css' %}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+<div class="container">
+    <center><h2>Students attendance of {{ classgroup.name }} || {{ classgroup.year }} in (2024-25)
+        {% comment %} <a href="{% url 'export-data' classgroup.id %}"> {% endcomment %}
+            <span class="material-symbols-outlined">download</span>
+        </a>
+    </h2></center>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Roll No</th>
+                <th>Student Name</th>
+                {% for date in dates %}
+                    <th>{{ date|date:"d M" }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ student.roll_no }}</td>
+                <td>{{ student.name }}</td>
+                {% for date in dates %}
+                    {% with attendance=attendance_data|get_item:date %}
+                        <td>{% if attendance %}P{% else %}A{% endif %}</td>
+                    {% endwith %}
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

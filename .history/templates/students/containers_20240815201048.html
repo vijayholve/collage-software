@@ -1,0 +1,48 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'students/containers.css' %}">
+{% endblock css_content %}
+{% block content %}
+<div class="dashboard">
+    <div class="header">
+        <div class="profile">
+            <img src="profile.jpg" alt="Profile" class="profile-img">
+            <span class="username">Bairagi Rajveer Kishor</span>
+        </div>
+        <div class="menu-icon">&#9776;</div>
+    </div>
+    <div class="icons-grid">
+        <a href="{% url 'home' %}">
+        <div class="icon">
+            <img src="\media\other\th (1).jpg" alt="Result Sheet">
+            <span>home</span>
+        </div>
+    </a>
+    <a href="{%url 'all-classes-assignements' %}">
+        <div class="icon">
+            <img src="icons/assignment.png" alt="Assignment">
+            <span>Assignment</span>
+        </div>
+        
+        <a href="{%url 'all-classes' %}">
+        <div class="icon">
+            <img src="icons/attendance.png" alt="Attendance">
+            <span>Attendance</span>
+        </div>
+        </a>
+        <div class="icon">
+            <img src="icons/info_desk.png" alt="Info Desk">
+            <span>Info Desk</span>
+        </div>
+        <div class="icon">
+            <img src="icons/album.png" alt="Album">
+            <span>Album</span>
+        </div>
+        <div class="icon">
+            <img src="icons/exam_schedule.png" alt="Exam Schedule">
+            <span>Exam Schedule</span>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,34 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'profiles/student_profile.css' %}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="{{ student.profile.url }}" alt="{{ student.name }}'s Profile Picture" class="profile-img">
+        <h2>{{ student.name }}</h2>
+        <h4>Roll No: {{ student.roll_no }}</h4>
+    </div>
+    <div class="profile-body">
+        <div class="profile-details">
+            <h3>Contact Information</h3>
+            <p><strong>Email:</strong> {{ student.email }}</p>
+            <p><strong>Contact:</strong> {{ student.contact }}</p>
+        </div>
+        <div class="profile-details">
+            <h3>Subjects</h3>
+            <ul>
+                {% for subject in student.subject.all %}
+                <li>{{ subject.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="profile-details">
+            <h3>Class Group</h3>
+            <p>{{ student.classgroup.name }}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

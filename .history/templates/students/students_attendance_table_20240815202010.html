@@ -32,7 +32,7 @@
                     <td>{{ student.roll_no }}</td>
                     <td>{{ student.name }}</td>
                     {% for date in dates %}
-                    {% with attendance=attendance_data|get_item:student.id|get_item:date %}
+                    {% with attendance=attendance_data|get_item:date %}
                         <td>{% if attendance %}Present{% else %}Absent{% endif %}</td>
                     {% endwith %}
                 {% endfor %}

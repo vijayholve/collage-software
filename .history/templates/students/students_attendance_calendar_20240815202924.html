@@ -1,0 +1,47 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'students/attendance_calendar.css' %}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+
+<div class="container">
+    <center>
+        <h2>Students Attendance of {{ classgroup.name }} || {{ classgroup.year }} in (2024-25)
+            {% comment %} <a href="{% url 'expord-data' classgroup.id %}"> {% endcomment %}
+                <span class="material-symbols-outlined">download</span>
+            </a>
+        </h2>
+    </center>
+    <table border="2" class="calendar">
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in calendar_days|slice:"0::7" %}
+                <tr>
+                    {% for day in week %}
+                        <td>
+                            {% if day %}
+                                {{ day|date:"j" }}<br>
+                                {% with attendance=attendance_data|get_item:day %}
+                                    {% if attendance %}P{% else %}A{% endif %}
+                                {% endwith %}
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
