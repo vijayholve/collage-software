@@ -1,0 +1,19 @@
+{% extends "base/main.html" %}
+{% block content %}
+<div>{{user_type}}</div>
+<br>
+{% include 'base/messages.html' %}
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {% if user_type == 'student' %} 
+        {{ student_form.as_p }} 
+    {% elif user_type == 'teacher' %}
+    {{ teacher_form.as_p }}
+    {% elif user_type == 'admin' %} 
+    {{ admin_form.as_p }}
+    {% else %}
+    {{ student_form.as_p }} 
+    {% endif %} 
+    <input type="submit" value="submit">
+</form>
+{% endblock content %}
