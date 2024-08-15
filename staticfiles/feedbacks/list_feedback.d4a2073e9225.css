@@ -1,0 +1,26 @@
+.container{
+    background-color: antiquewhite;
+    height: 100%;
+}
+
+.all-feedback{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;    
+}
+.box{
+    border: 1px solid black;
+    width:90%;
+    height: 150px;
+    padding: 10px;
+
+}
+
+
+.student-name{
+    font-size: 30px;
+    color: black;
+    width: 80px;
+}

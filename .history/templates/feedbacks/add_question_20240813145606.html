@@ -1,0 +1,33 @@
+{% extends "base/main.html" %}
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'feedbacks/add_question.html' %}">
+{% endblock css_content %}
+{% block content %}
+  <h1>Add New Question</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ question_form.as_p }}
+    <div id="mcq-options" style="display: none;">
+      <h3>Options for Multiple Choice Question</h3>
+      <input type="text" name="options" placeholder="Option 1">
+      <input type="text" name="options" placeholder="Option 2">
+      <input type="text" name="options" placeholder="Option 3">
+      <input type="text" name="options" placeholder="Option 4">
+    </div>
+    <button type="submit">Add Question</button>
+  </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const questionTypeField = document.querySelector('#id_question_type');
+      questionTypeField.addEventListener('change', function() {
+        const mcqOptionsDiv = document.querySelector('#mcq-options');
+        if (questionTypeField.value === 'mcq') {
+          mcqOptionsDiv.style.display = 'block';
+        } else {
+          mcqOptionsDiv.style.display = 'none';
+        }
+      });
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,68 @@
+/* styles.css */
+
+/* General styles for the body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container for the form */
+  .form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling the form itself */
+  .styled-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Styling for form elements */
+  .styled-form p {
+    margin-bottom: 15px;
+    font-size: 1em;
+    color: #333;
+  }
+  
+  .styled-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .styled-form input[type="text"],
+  .styled-form input[type="email"],
+  .styled-form textarea,
+  .styled-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+  }
+  
+  /* Submit button styling */
+  .submit-btn {
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #005bb5;
+  }
+  

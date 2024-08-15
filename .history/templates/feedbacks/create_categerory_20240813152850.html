@@ -1,0 +1,12 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}{% endblock css_content %}
+{% block content %}
+<div class="form-container">
+    <form action="" method="post" class="styled-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="submit-btn">
+    </form>
+</div>
+{% endblock %}

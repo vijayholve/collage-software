@@ -1,0 +1,25 @@
+{% extends "base/main.html" %}
+
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'students/id_card.css' %}?v={{time}}">
+{% endblock css_content %}
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="clg-name">Sm joshi</div>
+    <div class="lock">Hadpasar</div>
+    <div class="img-bx">
+        <img src="/media/{{ student.profile }}" alt="img" />
+    </div>
+    <div class="content">
+      <div class="detail">
+        <h2>{{ student.name }}<br /><span>{{ student.contact }}</span><br /><span>{{ student.user.email }}</span></h2>
+      </div>
+    </div>
+  </div>
+  <a href="{% url 'download_id_card' student.id %}" class="btn btn-primary">
+    <span class="material-symbols-outlined">download</span>
+  </a>
+</div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'base/main.html' %}
+
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{%static 'exams/add_question.css.css' %}">
+{% endblock css_content %}
+{% block content %}
+
+<div class="form-container">
+    <h2>Add Question to {{ test.title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ question_form.as_p }}
+        <h3>Options</h3>
+        {% for option_form in option_forms %}
+            {{ option_form.as_p }}
+        {% endfor %}
+        <button type="submit" class="submit-button">Add Question</button>
+    </form>
+</div>
+{% endblock content %}

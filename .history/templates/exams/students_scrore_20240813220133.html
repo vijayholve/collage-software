@@ -1,0 +1,50 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'exams/students_scrore.css' %}?v={TIME}">
+{% endblock css_content %}
+{% block content %}
+{% include 'base/navigation_bar.html' %}
+<div class="container">
+    <h2 class="test-title">{{ test.title }}</h2>
+    <table class="students-table">
+        <thead>
+            <tr>
+                <th>(Rank)</th>
+                <th>Roll No</th>
+                <th>Student Name</th>
+                <th>Score</th>
+                <th>User ID</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in students_scores %}
+            {% if request.user == score.student %}
+            <tr class="custom-user-result">
+                <td st>{{forloop.counter}}</td>
+                {% with student_details=students_details|get_item:score.student.id %}
+                <td>{{ student_details.roll_no }}</td>
+                <td>{{ student_details.name }}</td>
+                {% endwith %}
+                <td>{{ score.score }}</td>
+                <td>{{ score.student.id }}</td>
+                <td>{{ score.student.username }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                {% with student_details=students_details|get_item:score.student.id %}
+                <td>{{ student_details.roll_no }}</td>
+                <td>{{ student_details.name }}</td>
+                {% endwith %}
+                <td>{{ score.score }}</td>
+                <td>{{ score.student.id }}</td>
+                <td>{{ score.student.username }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

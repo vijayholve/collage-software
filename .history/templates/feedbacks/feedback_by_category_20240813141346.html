@@ -1,0 +1,28 @@
+{% extends "base/main.html" %}
+
+{% block content %}
+  <h1>Feedback for {{ category.name }}</h1>
+  <p>{{ category.description }}</p>
+
+  <h2>Questions and Responses</h2>
+  {% for question, responses in question_responses.items %}
+    <div>
+      <h3>{{ question.question_text }}</h3>
+      <ul>
+        {% for response in responses %}
+          <li>
+            {% if question.question_type == 'text' and response.response_text %}
+              {{ response.response_text }}
+            {% elif question.question_type == 'mcq' and response.response_choice %}
+              {{ response.response_choice }}
+            {% elif question.question_type == 'likert' and response.response_likert %}
+              Likert Score: {{ response.response_likert }}
+            {% else %}
+              No response provided.
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+{% endblock %}

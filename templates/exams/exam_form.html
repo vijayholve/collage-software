@@ -1,0 +1,49 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'exams/create_exam.css'%}">
+{% endblock css_content %}
+
+<meta charset="UTF-8">
+    <title>Exam Form</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {% block content %}
+
+    {% include 'base/navigation_bar.html' %}
+    <div class="exam-form-container">
+        <h2>Create Exam</h2>
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <div class="form-errors">
+                    <ul>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <li>{{ field.label }}: {{ field.errors }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% for f in form %}
+            
+            <div class="form-group">
+                {{ f.label_tag }}
+                {{ f}}
+            </div>
+            {% endfor %}
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        $(function() {
+            $("#id_test_date").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+        });
+    </script>
+    {% endblock content %}

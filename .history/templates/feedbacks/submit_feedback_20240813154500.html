@@ -1,0 +1,33 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static %}">
+{% endblock css_content %}
+{% block content %}
+<div class="form-container">
+  <h1>Submit Feedback for {{ category.name }}</h1>
+  <p>{{ category.description }}</p>
+  
+  <form method="post" class="styled-form">
+    {% csrf_token %}
+    {% for question in questions %}
+      <div class="question-block">
+        <label>{{ question.question_text }}</label>
+        {% if question.question_type == 'text' %}
+          <input type="text" name="question_{{ question.id }}_text" class="text-input">
+        {% elif question.question_type == 'mcq' %}
+          {% for option in question.options.all %}
+            <div class="mcq-option">
+              <input type="radio" name="question_{{ question.id }}_choice" value="{{ option.option_text }}" id="option_{{ option.id }}">
+              <label for="option_{{ option.id }}">{{ option.option_text }}</label>
+            </div>
+          {% endfor %}
+        {% elif question.question_type == 'likert' %}
+          <input type="number" name="question_{{ question.id }}_likert" min="1" max="5" class="likert-input">
+        {% endif %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="submit-btn">Submit Feedback</button>
+  </form>
+</div>
+{% endblock %}

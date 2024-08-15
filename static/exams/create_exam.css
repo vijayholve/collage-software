@@ -1,0 +1,47 @@
+.exam-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 80px;
+}
+.exam-form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.exam-form-container form {
+    display: flex;
+    flex-direction: column;
+}
+.exam-form-container form .form-group {
+    margin-bottom: 15px;
+}
+.exam-form-container form .form-group label {
+    font-weight: bold;
+}
+.exam-form-container form .form-group input, 
+.exam-form-container form .form-group select, 
+.exam-form-container form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.exam-form-container form .form-errors {
+    margin-bottom: 20px;
+    color: #d9534f;
+}
+.exam-form-container form button {
+    background-color: #5cb85c;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.exam-form-container form button:hover {
+    background-color: #4cae4c;
+}

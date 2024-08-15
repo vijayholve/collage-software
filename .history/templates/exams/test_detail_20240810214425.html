@@ -1,0 +1,33 @@
+{% extends 'base/main.html' %}
+{% block content %}
+{% include 'base/navigation_bar.html' %}
+<h3><a href="{% url 'students-results' test.id  %}">Results</a></h3>
+<h3><a href="{% url 'take_test' test.id %}">Exam</a></h3>
+<h2>{{ test.title }}</h2>
+<p>Start Time: {{ test.assigned_date }}</p>
+<p>End Time: {{ test.test_date    }}</p> 
+<h3>Questions:</h3>
+<ul>
+    
+    {% for question in test.questions.all %}
+        <li>{{ question.text }} <div><a href="{% url 'update-quistion'  question.id%}">
+            update-quistion
+        </a></div>
+        <div>
+            <a href="{% url 'delete-quistion' question.id %}">delete-quistion</a>
+        </div>
+            <ul>
+                {% for option in question.options.all %}  
+                    <li>{{ option.option_text }} {% if option.is_correct %}(Correct){% endif %}</li><div>
+                        <a href="{% url 'delete-option' id=option.id test_id=test.id %}">
+                            delete
+                        </a>
+                    </div>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_question' test.id %}">Add Question</a>
+
+{% endblock content %}

@@ -1,0 +1,80 @@
+{% extends "base/main.html" %}
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'students/attendance.css' %}?v={{time}}">
+{% endblock css_content %}
+
+{% block content %} 
+{% include "base/navigation_bar.html" %}
+
+
+<div class="header-container">
+    <h3>Assignments for {{ classgroup.year }} || {{ classgroup.name }}</h3>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Student Name</th>
+            <th>Assignment Checked</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.roll_no }}</td>
+            <td>{{ student.name }}</td>
+            <td>
+                {% if student.assignment_checked %}
+                <button onclick="uncheckAssignment({{ student.id }})">Checked</button>
+                {% else %}
+                <button onclick="checkAssignment({{ student.id }})">Mark as Checked</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    
+    function checkAssignment(studentId) {
+        fetch(`/check-assignment/${studentId}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                console.error('Failed to check assignment.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function uncheckAssignment(studentId) {
+        fetch(`/uncheck-assignment/${studentId}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                console.error('Failed to uncheck assignment.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+{% endblock content %}

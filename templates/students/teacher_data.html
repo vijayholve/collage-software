@@ -1,0 +1,13 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+{% include "base/navigation_bar.html" %}
+
+<div>
+    <h1><a href="{% url 'send-mail-teaches' %}">Send mail All</a></h1>
+    {% for teacher in teachers %}
+    <h5>{{teacher}}</h5> 
+    {% endfor %} 
+    
+</div>
+{% endblock content %}

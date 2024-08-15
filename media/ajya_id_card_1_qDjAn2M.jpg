@@ -1,0 +1,146 @@
+<style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(#03a9f4, #03a9f4 45%, #fff 45%, #fff 100%);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  width: 300px;
+  height: auto; /* Adjust height to fit content */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Adds space between the card and the button */
+  padding: 20px; /* Adds padding inside the card */
+}
+
+.clg-name{
+  font-size:50px;
+  text-align:center;
+  text-shadow:20px black;
+
+} .lock {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 10px;
+  
+}
+
+.img-bx {
+  position: relative;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0; /* Adds space around the image */
+}
+
+.img-bx img {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.detail {
+  text-align: center;
+  margin-top: 20px; /* Adds space above the details section */
+}
+
+.detail h2 {
+  color: #444;
+  font-size: 1.6em;
+  font-weight: bolder;
+  margin-bottom: 10px; /* Adds space below the name */
+}
+
+.detail h2 span {
+  display: block;
+  font-size: 0.8em;
+  color: #03a9f4;
+  font-weight: bold;
+  margin-top: 5px; /* Adds space between spans */
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background: #03a9f4;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #0288d1;
+}
+</style><html>
+    <head>
+        
+        
+<link rel="stylesheet" href="/static/students/id_card.css?v=">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="stylesheet" href="/static/base/button.css">
+    </head>
+    <body>
+        
+<div class="container">
+  <div class="card">
+    <div class="clg-name">Sm joshi</div>
+    <div class="lock">Hadpasar</div>
+    <div class="img-bx">
+        <img src="/media//profile_images/default.jpeg" alt="img" />
+    </div>
+    <div class="content">
+      <div class="detail">
+        <h2>ajya<br /><span>8080028963</span><br /><span>vija@gmail.com</span></h2>
+      </div>
+    </div>
+  </div>
+  <a href="/download-id-card/37/" class="btn btn-primary">
+    <span class="material-symbols-outlined">download</span>
+  </a>
+</div>
+ 
+    </body>
+</html>

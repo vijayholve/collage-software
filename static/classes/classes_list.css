@@ -1,0 +1,71 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.create-classes-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.create-classes-btn:hover {
+    background-color: #45a049;
+}
+
+.class-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.class-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.class-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.class-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.class-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.class-year {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.class-name {
+    font-size: 1rem;
+    color: #666;
+}

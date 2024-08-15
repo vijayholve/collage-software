@@ -1,0 +1,31 @@
+{% extends 'base/main.html' %}
+
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'classes/classes_list.css' %}">
+{% endblock css_content %}
+
+{% block content %}
+{% include "base/navigation_bar.html" %}
+
+<div class="container">
+    <div class="header">
+        <h1>Classes</h1>
+        <a href="{% url 'create-classes' %}" class="create-classes-btn">Create Classes</a>
+    </div>
+
+    <div class="class-list">
+        {% for cls in classes %}
+            <div class="class-card">
+                <a href="{% url 'attendance-list' pk=cls.id %}">
+                    <div class="class-info">
+                        <span class="class-year">{{ cls.year }}</span>
+                        <span class="class-name">{{ cls.name }}</span>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

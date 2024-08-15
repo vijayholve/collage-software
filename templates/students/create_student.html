@@ -1,0 +1,17 @@
+{% extends "base/main.html" %} 
+{% block content %} 
+<div> 
+<form action="" method="POST"> 
+{% include "base/navigation_bar.html" %}
+
+{% for form  in forms %} 
+{% csrf_token %}    
+    <div> 
+        {{form}} 
+    </div> 
+{% endfor %} 
+<input type="submit" value="Submit"> 
+</form> 
+</div> 
+{% endblock %}
+    

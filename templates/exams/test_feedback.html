@@ -1,0 +1,8 @@
+{% extends 'base/main.html' %}
+{% block content %}
+{% comment %} <h2>{{created}}</h2> {% endcomment %}
+<h2>{{ test.title }}</h2>
+<p>{{ feedback }}</p>
+<a href="{% url 'take_test' test.id %}">Next Question</a>
+
+{% endblock content %}

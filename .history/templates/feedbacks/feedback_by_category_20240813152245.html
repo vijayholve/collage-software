@@ -1,0 +1,36 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+link
+{% endblock css_content %}
+
+{% block content %}
+<div>
+  <a href="{% url 'add-feedback-quistions' category.id %}">Create Feedback add feedback-quistions</a>
+</div>
+
+  <h1>Feedback for {{ category.name }}</h1>
+  <p>{{ category.description }}</p>
+  <h2>Questions and Responses</h2>
+  {% for question in questions %}
+    <div>
+      <h3>{{ question.question_text }}</h3>
+      <ul>
+        {% for response in responses %}
+          {% if response.question.id == question.id %}
+            <li>
+              {% if question.question_type == 'text' %}
+                {{ response.response_text }}
+              {% elif question.question_type == 'mcq' %}
+                {{ response.response_choice }}
+              {% elif question.question_type == 'likert' %}
+                {{ response.response_likert }}
+              {% endif %}
+              
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+{% endblock %}

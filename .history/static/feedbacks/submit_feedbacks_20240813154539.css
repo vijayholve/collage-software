@@ -1,0 +1,94 @@
+/* styles.css */
+
+/* General styles for the body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container for the form */
+  .form-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling for the form elements */
+  .styled-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Styling for each question block */
+  .question-block {
+    margin-bottom: 20px;
+  }
+  
+  .question-block label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .text-input,
+  .likert-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+  }
+  
+  .mcq-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .mcq-option input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .mcq-option label {
+    margin: 0;
+    color: #555;
+  }
+  
+  /* Submit button styling */
+  .submit-btn {
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Heading and paragraph styling */
+  h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  

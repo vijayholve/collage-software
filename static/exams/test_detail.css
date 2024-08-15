@@ -1,0 +1,70 @@
+/* Base styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+}
+
+h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+/* Button styles */
+.btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-info {
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+}
+
+/* List group styles */
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #dee2e6;
+    padding: 15px;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+.list-group-item .btn {
+    margin-left: 10px;
+}
+
+/* Custom spacing */
+.mt-3 {
+    margin-top: 1rem !important;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+.mt-5 {
+    margin-top: 3rem !important;
+}
+
+/* Hover effects */
+.btn:hover {
+    opacity: 0.9;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1;
+}

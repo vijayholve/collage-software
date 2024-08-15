@@ -1,0 +1,54 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static ''%}">
+{% endblock %}
+{% block content %}
+{% include 'base/navigation_bar.html' %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">{{ test.title }}</h2>
+            <p class="text-center"><strong>Start Time:</strong> {{ test.assigned_date }}</p>
+            <p class="text-center"><strong>End Time:</strong> {{ test.test_date }}</p>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <a class="btn btn-primary mr-3" href="{% url 'students-results' test.id  %}">Results</a>
+            <a class="btn btn-success" href="{% url 'take_test' test.id %}">Exam</a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h3>Questions:</h3>
+            <ul class="list-group">
+                {% for question in test.questions.all %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <span>{{ question.text }}</span>
+                            <div>
+                                <a class="btn btn-warning btn-sm mr-2" href="{% url 'update-question' question.id %}">Update</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'delete-question' question.id %}">Delete</a>
+                            </div>
+                        </div>
+                        <ul class="list-group mt-3">
+                            {% for option in question.options.all %}
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>{{ option.option_text }} {% if option.is_correct %}(Correct){% endif %}</span>
+                                    <a class="btn btn-outline-danger btn-sm" href="{% url 'delete-option' id=option.id test_id=test.id %}">Delete</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="mt-4 text-center">
+                <a class="btn btn-info" href="{% url 'add_question' test.id %}">Add Question</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

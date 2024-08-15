@@ -1,0 +1,107 @@
+/* home.css */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.site-header {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    height: 80px;
+    margin-right: 15px;
+}
+
+.intro {
+    background: #fff;
+    padding: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
+}
+
+.intro-content {
+    display: flex;
+    align-items: center;
+}
+
+.intro-content img {
+    max-width: 40%;
+    margin-right: 2em;
+    border-radius: 10px;
+}
+
+.info h2 {
+    color: #333;
+    margin-bottom: 1em;
+}
+
+.vision-mission {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    background: #fff;
+    padding: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
+}
+
+.vision, .mission {
+    flex: 1;
+    margin: 0 1em;
+}
+
+.vision h2, .mission h2 {
+    color: #333;
+    margin-bottom: 1em;
+}
+
+.vision-image, .mission-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+.principal-desk {
+    background: #fff;
+    padding: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
+}
+
+.principal-info {
+    display: flex;
+    align-items: center;
+}
+
+.principal-image {
+    max-width: 30%;
+    margin-right: 2em;
+    border-radius: 10px;
+}
+
+.principal-text p {
+    margin-bottom: 1em;
+}
+
+.recruiters {
+    background: #fff;
+    padding: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recruiters-list {
+    display: flex
+}
