@@ -1,7 +1,7 @@
 {% extends 'base/main.html' %}
 {% load static %}
 {% block css_content %}
-<link rel="stylesheet" href="{% static 'students/containers.css' %}?v={{time}}">
+<link rel="stylesheet" href="{% static 'students/containers.css' %}">
 {% endblock css_content %}
 {% block content %}
 <div class="dashboard">
@@ -12,7 +12,7 @@
             <span class="username">{{student.name}}</span>
         </div>
     </a>
-        {% comment %} <div class="menu-icon">&#9776;</div> {% endcomment %}
+        <div class="menu-icon">&#9776;</div>
     </div>
     <div class="icons-grid">
         <a href="{% url 'home' %}">
@@ -21,7 +21,7 @@
             <span>home</span>
         </div>
     </a>
-    <a href="{%url 'home-assignemts' student.classgroup.id %}">
+    <a href="{%url 'all-classes-assignements' %}">
         <div class="icon">
             <img src="\media\other\th (4).jpg" alt="Assignment">
             <span>Assignment</span>

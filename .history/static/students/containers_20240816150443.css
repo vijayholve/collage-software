@@ -6,10 +6,7 @@ body {
     height: 100vh;
     margin: 0;
 }
-a{
-    color: black;
-    text-decoration: solid;
-}
+a
 .dashboard {
     width: 90%;
     max-width: 1200px;

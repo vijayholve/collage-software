@@ -3,14 +3,6 @@
 <div class="nav-container">
     <nav class="menu" id="nav">
         <span class="nav-item">
-            <a href="{% url 'container' %}">
-                <span class="material-symbols-outlined">
-                    account_circle
-                    </span>
-                profile   
-                </span>
-                </a>
-        <span class="nav-item">
             <a href="{% url 'home' %}">
             <span class="material-symbols-outlined">	
                 home
@@ -58,7 +50,14 @@
                Books
         </span>
     </a>
-
+     <span class="nav-item">
+        <a href="{% url 'book-data' %}">
+            <span class="material-symbols-outlined">
+                account_circle
+                </span>
+            profile   
+            </span>
+            </a>
         <div class="page">
             
             {% if request.user.is_authenticated %} 
