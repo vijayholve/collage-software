@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timetable List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h3><a href="{% url 'create-timetable'%}"></a></a></h3>
+<h3><a href="create-timeslot">create-timeslot</a></h3>
+    <h1>Timetable List</h1>
+    {% load custom_filters %}
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                {% for day in days_of_week %}
+                <th>{{ day }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for slot in time_slots %}
+            <tr>
+                <td>{{ slot.start_time }} - {{ slot.end_time }}</td>
+                {% for day in days_of_week %}
+                <td>
+                    {% for entry in timetable|get_item:day|get_item:slot %}
+                        {{ entry.subject.name }} ({{ entry.teacher.name }})<br>
+                        {{ entry.batch }}
+                    {% endfor %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

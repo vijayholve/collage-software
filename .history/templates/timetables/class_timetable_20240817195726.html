@@ -1,0 +1,34 @@
+<!-- templates/timetables/class_timetable.html -->
+
+{% extends "base/main.html" %}
+
+{% block content %}
+  <h1>Timetable for {{ classgroup.name }}</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Time</th>
+        {% for day in days %}
+          <th>{{ day }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for slot in time_slots %}
+        <tr>
+          <td>{{ slot.start_time|time:"H:i" }} - {{ slot.end_time|time:"H:i" }}</td>
+          {% for day in days %}
+            <td>
+              {% if timetable_dict.slot.start_time_slot.end_time and timetable_dict.slot.start_time_slot.end_time.day %}
+                {{ timetable_dict.slot.start_time_slot.end_time.day.subject.name }}<br>
+                {{ timetable_dict.slot.start_time_slot.end_time.day.teacher.name }}
+              {% else %}
+                ---
+              {% endif %}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

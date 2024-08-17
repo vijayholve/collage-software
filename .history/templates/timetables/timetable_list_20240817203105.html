@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timetable List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Timetable List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                {% for day in days_of_week %}
+                <th>{{ day }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for time_slot in timetables.Monday %}
+            <tr>
+                <td>{{ time_slot.time_slot.start_time }} - {{ time_slot.time_slot.end_time }}</td>
+                {% for day in days_of_week %}
+                <td>
+                    {% for timetable in timetables.day %}
+                        {% if timetable.time_slot.start_time == time_slot.time_slot.start_time %}
+                            {{ timetable.subject.code }} ({{ timetable.teacher.name }})<br>
+                            {{ timetable.batch }}
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
