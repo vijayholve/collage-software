@@ -1,0 +1,10 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<form action="" method="post">
+    {{form}}
+    {% csrf_token %}
+    
+</form>
+{% endblock content %}
+

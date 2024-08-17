@@ -1,0 +1,31 @@
+{% extends 'base/main.html' %}
+
+
+{% block content %}
+<table>
+    <tr>
+        <th>Time</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+    </tr>
+    {% for time_slot in time_slots %}
+    <tr>
+        <td>{{ time_slot.start_time }} - {{ time_slot.end_time }}</td>
+        {% for day in days %}
+            <td>
+                {% get_slot timetable_entries time_slot.start_time time_slot.end_time day as slot %}
+                {% if slot %}
+                    {{ slot.subject.name }}<br>
+                    {{ slot.teacher.name }}<br>
+                    {{ slot.start_time }} - {{ slot.end_time }}
+                {% endif %}
+            </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

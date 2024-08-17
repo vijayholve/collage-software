@@ -1,0 +1,7 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path("all-classes-timetable/",views.all_classes,name="all-classes-timetable"),all-classes-timetable
+
+]
