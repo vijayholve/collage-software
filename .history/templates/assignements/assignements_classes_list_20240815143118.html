@@ -1,0 +1,34 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'assignments/class_year_selection.css' %}">
+{% endblock css_content %}
+
+{% block content %}
+{% include "base/navigation_bar.html" %}
+<br>
+<div class="container">
+    <h2>Select Class and Year</h2>
+    <form action="" method="GET" class="selection-form">
+        <div class="form-group">
+            <label for="class">Class:</label>
+            <select id="class" name="class" required >
+                <option value="" disabled selected>Select your class</option>
+                {% for class in classes %}
+                    <option value="{{ class.id }}">{{ class.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <select id="year" name="year" required>
+                <option value="" disabled selected>Select year</option>
+                {% for year in years %}
+                    <option value="{{ year.year}}">{{ year.year }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="submit-btn">View Assignments</button>
+    </form>
+</div>
+{% endblock content %}
