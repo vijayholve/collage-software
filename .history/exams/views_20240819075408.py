@@ -47,7 +47,7 @@ def update_exams(request,test_id):
         else:
             error(request,"Deta is not valid")
     return render(request,"exams/exam_form.html",{"form":form})
-@login_required(login_url="login-page")
+
 def home_exams(request):
     now = datetime.now()
     date = now.date()

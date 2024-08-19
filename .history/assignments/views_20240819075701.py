@@ -6,8 +6,7 @@ from django.http import FileResponse, Http404 ,HttpResponse
 from .task import send_mail_to_all_students_for_assignemt 
 import os 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-@login_required(login_url="login-page")
+from django.
 def all_classes(request):
     classes = Classes.objects.all()
     class_ba=Classes.objects.get(name="BA")    

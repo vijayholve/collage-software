@@ -93,7 +93,7 @@ from django.shortcuts import render, get_object_or_404
 #     return render(request, 'timetables/class_timetable.html', context)
 # from django.shortcuts import render
 # from .models import Timetable, TimeSlot
-@login_required(login_url="login-page")
+
 def timetable_list(request, classid):
     # Fetch all timetables for the given classgroup_id
     classgroup=ClassGroup.objects.get(id=classid)

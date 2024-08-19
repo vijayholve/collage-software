@@ -8,7 +8,6 @@ from django.contrib.messages import error
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url="login-page")
 def library_home(request):
     books=Books.objects.all()
     # q=request.GET.get('q')
@@ -16,7 +15,7 @@ def library_home(request):
         books=Books.objects.filter(Q(name__icontains=q) | Q(author__icontains=q))
     content={"books":books} 
     return render(request,"librarys/book_home.html",content)
-@login_required(login_url="login-page")
+
 def books_form(request):
     form=BooksForm() 
     # teacher=Teacher.objects.get(name="hod2")
@@ -28,7 +27,7 @@ def books_form(request):
         else:
             error(request, "Invalid Books")
     return render(request,rf'librarys\create_books.html', {'form': form})
-@login_required(login_url="login-page") 
+
 def download_file(request, file_id):
     downloadable_file = get_object_or_404(Books, id=file_id) 
     file_path = downloadable_file.file.path  

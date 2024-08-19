@@ -16,7 +16,7 @@ def create_classes(request):
             error(request,"Information is incorect")
     content={"form":form    }
     return render(request,"classes/create_class.html", content)
-@login_required(login_url="login-page")
+
 def classes_list(request):
     classes=ClassGroup.objects.all()
     content={"classes":classes}

@@ -1,7 +1,6 @@
-from django.shortcuts import render,redirect ,get_object_or_404 
+from django.shortcuts import render,redirect ,get_object_or_404 ,logi
 from students.models import Timetable ,ClassGroup,Classes ,TimeSlot
 from .form import TimetableForm ,timeslotform
-from django.contrib.auth.decorators import login_required
 
 from django import template
 
@@ -16,12 +15,13 @@ def get_slot(timetable_entries, start_time, end_time, day):
     return None
 
 # templatetags/custom_filters.py
+from django import template
 
+register = template.Library()
 
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key, '')
-@login_required(login_url="login-page")
 def create_timeslot_of_timetablel(request):
     form=timeslotform()
     if request.method == "POST":
@@ -31,7 +31,7 @@ def create_timeslot_of_timetablel(request):
             return redirect('timetable_list',classid=2)
     content={"form":form}
     return render(request,"timetables/create_timetables.html",content)
-@login_required(login_url="login-page")
+
 def create_timetable_of_class(request,classid):
     classgroup=ClassGroup.objects.get(id=classid)
     form=TimetableForm()
@@ -44,7 +44,7 @@ def create_timetable_of_class(request,classid):
             return redirect('timetable_list',classid=classid)
     content={"form":form}
     return render(request,"timetables/create_timetables.html",content)
-@login_required(login_url="login-page")
+
 def all_classes(request):
     classes = Classes.objects.all()
     class_ba=Classes.objects.get(name="BA")    
@@ -93,7 +93,7 @@ from django.shortcuts import render, get_object_or_404
 #     return render(request, 'timetables/class_timetable.html', context)
 # from django.shortcuts import render
 # from .models import Timetable, TimeSlot
-@login_required(login_url="login-page")
+
 def timetable_list(request, classid):
     # Fetch all timetables for the given classgroup_id
     classgroup=ClassGroup.objects.get(id=classid)

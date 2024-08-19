@@ -58,6 +58,7 @@ def time_since(value):
     years = diff.days // 365
     return f'{years} years ago' 
 @login_required(login_url="login-page")
+
 def feedback_by_category(request, category_id):
     category = get_object_or_404(FeedbackCategory, id=category_id)
     questions = category.feedbackquestion_set.all()
