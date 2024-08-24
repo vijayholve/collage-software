@@ -190,12 +190,11 @@ def send_mails_to_students(request,id):
     content={} 
     return render(request,"base/send_mail.html",content) 
 
-def send_mails_to_all_students(request ,classid):
-     
+def send_mails_to_all_students(request ): 
     subject=request.POST.get('subject')  
     mail_text=request.POST.get('content')  
     if request.method == 'POST': 
-        send_mail_to_all_task_students.delay(subject,mail_text,classid) 
+        send_mail_to_all_task_students.delay(subject,mail_text) 
         return redirect('home') 
     content={} 
     return render(request,"base/send_mail.html",content)

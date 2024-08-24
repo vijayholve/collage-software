@@ -85,7 +85,7 @@ def student_to_send_mail(id,subject,email_content):
 def students_to_send_mail(subject,email_content,classid):
     classgroup=ClassGroup.objects.get(id=classid)
     sender=settings.EMAIL_HOST_USER
-    student=Student.objects.filter(classgroup=classgroup)
+    student=Student.objects.filter(class)
     arr=[] 
     for std in student:
         try:

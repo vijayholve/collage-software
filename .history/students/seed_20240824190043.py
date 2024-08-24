@@ -2,7 +2,7 @@ from .models import Student,Attendance
 from faker import Faker # type: ignore 
 from django.core.mail import send_mail 
 from django.contrib.auth.models import User
-from .models import Teacher ,CustomUser ,Student ,ClassGroup
+from .models import Teacher ,CustomUser ,Student 
 from django.conf import settings 
 from time import sleep
 
@@ -83,9 +83,9 @@ def student_to_send_mail(id,subject,email_content):
     
 
 def students_to_send_mail(subject,email_content,classid):
-    classgroup=ClassGroup.objects.get(id=classid)
+    classgroup=Clagro
     sender=settings.EMAIL_HOST_USER
-    student=Student.objects.filter(classgroup=classgroup)
+    student=Student.objects.filter()
     arr=[] 
     for std in student:
         try:

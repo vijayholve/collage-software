@@ -20,8 +20,8 @@ def send_mail_to_all_task_teacher(self,subject,mail_text):
     return "done"
 
 @shared_task(bind=True)
-def send_mail_to_all_task_students(self,subject,mail_text,classid):
-    students_to_send_mail(subject,mail_text,classid)
+def send_mail_to_all_task_students(self,subject,mail_text):
+    students_to_send_mail(subject,mail_text)
     return "done"
 
 # your_app/tasks.py
