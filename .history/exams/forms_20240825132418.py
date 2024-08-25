@@ -40,8 +40,8 @@ class ExamsForm(ModelForm):
             self.add_error('end_time', 'End time is required.')
         if not classgroup:
             self.add_error('classgroup', 'Class group is required.')
-        # if end_time < start_time:
-        #     self.add_error('end_time','end time should be gretter')
+        if end_time < start_time:
+            self.add_error('end_time',")
         return cleaned_data
 
 

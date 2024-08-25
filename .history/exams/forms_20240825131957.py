@@ -20,29 +20,28 @@ class ExamsForm(ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['placeholder'] = field.label
     def clean(self):
-        cleaned_data = super().clean()
-        title = cleaned_data.get('title')
-        test_date = cleaned_data.get('test_date')
-        start_time = cleaned_data.get('start_time')
-        end_time = cleaned_data.get('end_time')
-        classgroup = cleaned_data.get('classgroup')
+    cleaned_data = super().clean()
+    title = cleaned_data.get('title')
+    test_date = cleaned_data.get('test_date')
+    start_time = cleaned_data.get('start_time')
+    end_time = cleaned_data.get('end_time')
+    classgroup = cleaned_data.get('classgroup')
 
-        # Check if test date is in the future
-        if test_date and test_date < date.today():
-            self.add_error('test_date', 'Test date must be in the future.')
+    # Check if test date is in the future
+    if test_date and test_date < date.today():
+        self.add_error('test_date', 'Test date must be in the future.')
 
-        # Required field validation
-        if not title:
-            self.add_error('title', 'Title is required.')
-        if not start_time:
-            self.add_error('start_time', 'Start time is required.')
-        if not end_time :
-            self.add_error('end_time', 'End time is required.')
-        if not classgroup:
-            self.add_error('classgroup', 'Class group is required.')
-        # if end_time < start_time:
-        #     self.add_error('end_time','end time should be gretter')
-        return cleaned_data
+    # Required field validation
+    if not title:
+        self.add_error('title', 'Title is required.')
+    if not start_time:
+        self.add_error('start_time', 'Start time is required.')
+    if not end_time:
+        self.add_error('end_time', 'End time is required.')
+    if not classgroup:
+        self.add_error('classgroup', 'Class group is required.')
+
+    return cleaned_data
 
 
     def clean_title(self):
