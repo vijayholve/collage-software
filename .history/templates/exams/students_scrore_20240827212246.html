@@ -50,14 +50,6 @@
     </table>
 </div>
 <script>
-    // Push the state initially
-    history.pushState(null, null, window.location.href);
-
-    // Re-push the state whenever the popstate event is triggered (back button)
-    window.onpopstate = function() {
-        history.pushState(null, null, window.location.href);
-    };
+    
 </script>
-
-
 {% endblock content %}

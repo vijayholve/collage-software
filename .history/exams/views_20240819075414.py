@@ -174,8 +174,8 @@ def students_result_exam(request,test_id):
     students_details = {}
     for student_score in students_scores:
             # Debugging information
-        # print(f"Processing student score: {student_score}")
-        # print(f"CustomUser ID: {student_score.student.id}")
+        print(f"Processing student score: {student_score}")
+        print(f"CustomUser ID: {student_score.student.id}")
 
         try:
             student = Student.objects.get(user=student_score.student)

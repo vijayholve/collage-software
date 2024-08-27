@@ -25,6 +25,12 @@
     </head>
     <body>
         {% block content %} {% endblock content %} 
+        <script>
+            history.pushState(null, null, window.location.href);
+            window.onpopstate = function() {
+                history.pushState(null, null, window.location.href);
+            };
+        </script>
         
     </body>
 </html>
