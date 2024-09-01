@@ -104,8 +104,9 @@ def timetable_list(request, classid):
     time_slots = TimeSlot.objects.all()
     timetable = {day: {slot: [] for slot in time_slots} for day in days_of_week}
     # Populate the timetable dictionary
-    for entry in timetables:
-        timetable[entry.day_of_week].get(entry.time_slot, []).append(entry)
+    if entry.day_of_week in timetable and entry.time_slot in timetable[entry.day_of_week]:
+        timetable[entry.day_of_week][entry.time_slot].append(entry)
+
 
     
     context = {
