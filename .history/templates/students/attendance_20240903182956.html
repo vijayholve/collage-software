@@ -1,0 +1,87 @@
+{% extends "base/main.html" %}
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'students/attendance.css' %}?v={{TIME}}">
+{% endblock css_content %}
+
+{% block content %} 
+{% include "base/navigation_bar.html" %}
+
+<div class="header-container">
+    <h2>{{ username }}</h2>
+    <h3>Hello Teachers</h3>
+    <p>Student Attendance of {{ today }} for {{ classgroup.year }} || {{ classgroup.name }}</p>
+</div>
+
+<div class="button-container">
+    <a href="{% url 'attendance-data' classgroup.id %}" class="button">Attendance Data</a>
+    <a href="{% url 'send-mail-students' classgroup.id %}" class="button">Send Mail to Students</a>
+</div>
+
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Student Name</th>
+            <th>Mark Attendance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student, attendance_exists in student_attendance %}
+        <tr>
+            <td>{{ student.roll_no }}</td>
+            <td>{{ student.name }}</td>
+            <td>
+                {% if attendance_exists %}
+                <button onclick="markAbsent({{ student.id }})" >Present</button>
+                {% else %}
+                <button onclick="markAttendance({{ student.id }})" id="mark-present({{student.id}})">Mark Present</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function markAttendance(studentId) {
+        fetch(`/mark/${studentId}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            mark_class=document.querySelector(`#mark-present()}")
+            
+            if (response.ok) {
+                location.reload();
+            } else {
+                console.error('Failed to mark attendance.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function markAbsent(studentId) {
+        fetch(`/absent/${studentId}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                console.error('Failed to mark attendance.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+{% endblock content %}
