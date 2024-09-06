@@ -7,7 +7,6 @@ from django.contrib.messages import error
 from django import template 
 from django.contrib.auth.decorators import login_required
 from datetime import datetime,timedelta
-from django.views.decorators.cache import never_cache
 register = template.Library()
 
 @register.filter(name='get_item')
@@ -94,16 +93,12 @@ def add_question_option(request, test_id):
 def test_detail(request, pk):
     test = Test.objects.get(pk=pk) 
     return render(request, 'exams/test_detail.html', {'test': test}) 
-
-@never_cache
 @login_required(login_url="login-page")
 def take_test(request, test_id):
     test = get_object_or_404(Test, id=test_id)
     student = request.user  # Assuming the student is the logged-in user
     questions = test.questions.all()
-    student_score=StudentScore.objects.filter(test=test)
-    if any(student == std.student for std in student_score):
-        return redirect("students-results",test_id=test.id)
+    if student in 
     
     if request.method == 'POST':
         score = 0

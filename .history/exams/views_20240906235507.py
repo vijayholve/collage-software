@@ -7,7 +7,6 @@ from django.contrib.messages import error
 from django import template 
 from django.contrib.auth.decorators import login_required
 from datetime import datetime,timedelta
-from django.views.decorators.cache import never_cache
 register = template.Library()
 
 @register.filter(name='get_item')
@@ -95,7 +94,6 @@ def test_detail(request, pk):
     test = Test.objects.get(pk=pk) 
     return render(request, 'exams/test_detail.html', {'test': test}) 
 
-@never_cache
 @login_required(login_url="login-page")
 def take_test(request, test_id):
     test = get_object_or_404(Test, id=test_id)

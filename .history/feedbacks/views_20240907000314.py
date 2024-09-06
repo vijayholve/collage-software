@@ -5,7 +5,7 @@ from students.models import Student ,Feedback
 from django.template.defaulttags import register    
 from django.utils import timezone
 from django.db.models import Q 
-from django.views.decorators.cache import never_cache
+from django.c
 from .forms import FeedbackQuestionForm, FeedbackOptionForm,feedbackCategroryform
 from students.models import FeedbackQuestion, FeedbackOption,FeedbackCategory  ,FeedbackResponse
 def make_dictonery(list_obj):
@@ -107,7 +107,7 @@ def add_option(request, question_id):
     else:
         option_form = FeedbackOptionForm()
     return render(request, 'feedbacks/add_option.html', {'option_form': option_form, 'question': question})
-@never_cache
+
 def submit_feedback(request, category_id):
     category = get_object_or_404(FeedbackCategory, id=category_id)
     questions = FeedbackQuestion.objects.filter(category=category)

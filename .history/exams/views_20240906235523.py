@@ -7,8 +7,8 @@ from django.contrib.messages import error
 from django import template 
 from django.contrib.auth.decorators import login_required
 from datetime import datetime,timedelta
-from django.views.decorators.cache import never_cache
 register = template.Library()
+from django.views.decorators.cache import never_cache
 
 @register.filter(name='get_item')
 def get_item(dictionary, key): 
