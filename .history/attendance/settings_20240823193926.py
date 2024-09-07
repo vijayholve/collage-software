@@ -84,14 +84,7 @@ DATABASES = {
         'PORT': '3306',  # Default MySQL port 
     }
 }
-# DEBUG=True
-# DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
 
-# # MySQL settings
-# MYSQL_ROOT_PASSWORD=your-mysql-root-password
-# MYSQL_DATABASE=
-# MYSQL_USER="root"
-# MYSQL_PASSWORD="vijay"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
