@@ -25,4 +25,4 @@ path("import_exel_data/<str:classid>/",views.import_data,name="import-data"),
 ] 
 if settings.DEBUG:  
     urlpatterns+=static(settings.MEDIA_URL,
-                        document_root =settings.MEDIA_ROOT) 
+                        document_root =settings.MEDIA_ROOT)

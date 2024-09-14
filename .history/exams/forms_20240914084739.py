@@ -75,7 +75,12 @@ class OptionForm(forms.ModelForm):
     class Meta:
         model = Option
         fields = ['option_text', 'is_correct']
-    
+    def hande(self):
+        clean_field(self):
+            data = self.cleaned_data["field"]
+            
+            return data
+        =
 
     def __init__(self, *args, **kwargs):
         question = kwargs.pop('question', None)

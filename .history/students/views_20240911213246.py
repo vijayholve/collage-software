@@ -315,8 +315,8 @@ def import_data(request,classid):
                 contact=Fake.phone_number() ,
                 classgroup=classgroup,
             )
-        return redirect('attendance-list',pk=classid)
+            
         # stdout.write(style.SUCCESS('Successfully imported student data'))
 
     except Exception as e:
-        error(request,"please enter valid data")
+        error()

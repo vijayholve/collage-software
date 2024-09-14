@@ -40,7 +40,8 @@ class ExamsForm(ModelForm):
             self.add_error('end_time', 'End time is required.')
         if not classgroup:
             self.add_error('classgroup', 'Class group is required.')
-        
+        if start_time.hour > end_time.hour:
+            self.add_error('time','start time should be less than end time ')
         # if end_time < start_time:
         #     self.add_error('end_time','end time should be gretter')
         return cleaned_data
@@ -75,7 +76,6 @@ class OptionForm(forms.ModelForm):
     class Meta:
         model = Option
         fields = ['option_text', 'is_correct']
-    
 
     def __init__(self, *args, **kwargs):
         question = kwargs.pop('question', None)

@@ -19,7 +19,6 @@ import pandas as pd
 from django.http import FileResponse, Http404 ,HttpResponse 
 from openpyxl import load_workbook
 from faker import Faker
-from django.contrib.messages import error
 
 
 def get_month_name(month_number):
@@ -302,21 +301,21 @@ def export_data_excel(request, class_id):
 
 def import_data(request,classid):
     
-    Fake=Faker()
-    file_path = rf"C:\Users\Vijay\python pro\attendance\students\management\data\Copy of BCA_Science_24.25_BCA(1).xlsx"
-    classgroup=ClassGroup.objects.get(name__name="BCA",year="SY")
-    try:
-        df = pd.read_excel(file_path)
+        Fake=Faker()
+        file_path = rf"C:\Users\Vijay\python pro\attendance\students\management\data\Copy of BCA_Science_24.25_BCA(1).xlsx"
+        classgroup=ClassGroup.objects.get(name__name="BCA",year="SY")
+        try:
+            df = pd.read_excel(file_path)
 
-        for _, row in df.iterrows():
-            Student.objects.create(
-                roll_no=row['roll no'],
-                name=row['name'],
-                contact=Fake.phone_number() ,
-                classgroup=classgroup,
-            )
-        return redirect('attendance-list',pk=classid)
-        # stdout.write(style.SUCCESS('Successfully imported student data'))
+            for _, row in df.iterrows():
+                Student.objects.create(
+                    roll_no=row['roll no'],
+                    name=row['name'],
+                    contact=Fake.phone_number() ,
+                    classgroup=classgroup,
+                )
+                
+            self.stdout.write(self.style.SUCCESS('Successfully imported student data'))
 
-    except Exception as e:
-        error(request,"please enter valid data")
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f'Error importing student data: {e}'))

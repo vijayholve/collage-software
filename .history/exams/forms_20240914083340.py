@@ -40,14 +40,15 @@ class ExamsForm(ModelForm):
             self.add_error('end_time', 'End time is required.')
         if not classgroup:
             self.add_error('classgroup', 'Class group is required.')
-        
+        if start_time > end_time:
+            self.add_error
         # if end_time < start_time:
         #     self.add_error('end_time','end time should be gretter')
         return cleaned_data
 
 
     def clean_title(self):
-        title = self.cleaned_data.get(  'title')
+        title = self.cleaned_data.get('title')
         if not title:
             raise forms.ValidationError('Title is required.')
         # if 'exam' or 'test'  not in title.lower():
@@ -75,7 +76,6 @@ class OptionForm(forms.ModelForm):
     class Meta:
         model = Option
         fields = ['option_text', 'is_correct']
-    
 
     def __init__(self, *args, **kwargs):
         question = kwargs.pop('question', None)

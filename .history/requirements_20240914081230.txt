@@ -23,7 +23,7 @@ faker
 gunicorn
 pymysql
 dj-database-url
-cryptography
+
 boto3 
 gspread
 Pillow

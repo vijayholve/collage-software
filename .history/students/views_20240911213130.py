@@ -19,7 +19,6 @@ import pandas as pd
 from django.http import FileResponse, Http404 ,HttpResponse 
 from openpyxl import load_workbook
 from faker import Faker
-from django.contrib.messages import error
 
 
 def get_month_name(month_number):
@@ -315,8 +314,8 @@ def import_data(request,classid):
                 contact=Fake.phone_number() ,
                 classgroup=classgroup,
             )
-        return redirect('attendance-list',pk=classid)
+            
         # stdout.write(style.SUCCESS('Successfully imported student data'))
 
     except Exception as e:
-        error(request,"please enter valid data")
+        messag
