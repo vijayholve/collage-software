@@ -1,0 +1,42 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'assignments/assignments_data.css' %}v?={{tie}}">
+{% endblock css_content %}
+
+{% block content %}
+{% include "base/navigation_bar.html" %}
+<br>
+<div class="container">
+    <div class="header">
+        <a href="{% url 'create-assignment' %}" class="create-assignment-btn">Create Assignment</a>
+    </div>
+    <br>
+    <div class="assignments-list">
+        {% if assignments %}
+        {% for ass in assignments %}
+        <div class="card">
+            <div class="card-header">
+                <span class="card-number">{{ forloop.counter }}</span>
+                <a href="{% url 'assignment-checking' ass.id %}" class="check-link">Check</a>
+            </div>
+            <div class="card-body">
+                <span class="card-subject">{{ ass.subject }}</span>
+                <h2 class="card-title">{{ ass.assigned_date }} to {{ ass.due_date }}</h2>
+                <span class="card-classgroup">{{ ass.classgroup }}</span>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'download_file' ass.id %}" class="download-btn">
+                    <span class="material-symbols-outlined">download</span> Download
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="no-assignments">
+            <h2>No Assignments Available</h2>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

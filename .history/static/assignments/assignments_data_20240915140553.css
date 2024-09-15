@@ -1,0 +1,89 @@
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.create-assignment-btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.assignments-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: calc(33.333% - 20px);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+}
+
+.card-subject {
+  font-size: 18px;
+  color: #777;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #333;
+}
+
+.card-classgroup {
+  font-size: 16px;
+  color: #999;
+}
+
+.card-actions {
+  margin-top: auto;
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.download-btn .material-symbols-outlined {
+  margin-right: 5px;
+}
+
+.card-shadow {
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 10px 10px;
+}

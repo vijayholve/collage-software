@@ -1,0 +1,66 @@
+/* Styling for the attendance table */
+.table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.table th, .table td {
+  padding: 10px;
+  border: 2px solid #ddd;
+}
+
+.table th {
+  background-color: #343a40;
+  color: white;
+  font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.table-hover tbody tr:hover td {
+  background-color: #d1ecf1;
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #dee2e6;
+}
+
+.table-success {
+  background-color: #d4edda !important;
+}
+
+.table-danger {
+  background-color: #f8d7da !important;
+}
+
+/* Download Button */
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.material-symbols-outlined {
+  font-size: 20px;
+}

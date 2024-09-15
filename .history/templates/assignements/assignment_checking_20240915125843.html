@@ -1,0 +1,78 @@
+{% extends "base/main.html" %}
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'students/attendance.css' %}">
+{% endblock css_content %}
+
+{% block content %} 
+{% include "base/navigation_bar.html" %}
+
+<div class="header-container">
+    <h3>Hello Teachers</h3>
+    <p>Student assignment of {{ assignment.title }} for {{ classgroup.year }} || {{ classgroup.name }}</p>
+</div>
+
+<div class="button-container">
+    <a href="{% url 'attendance-data' classgroup.id %}" class="button">Attendance Data</a>
+    <a href="{% url 'send-mail-students' classgroup.id %}" class="button">Send Mail to Students</a>
+</div>
+
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th>Roll No</th>
+            <th>Student Name</th>
+            <th>Mark Attendance</th>
+        </tr>
+    </thead>
+    <tbody   >
+        {% for student, assignment_exists in students_assignement %}
+        <tr>
+            <td>{{ student.roll_no }}</td>
+            <td>{{ student.name }}</td>
+            <td>
+                {% if assignment_exists %}
+                <button  class="present">Present</button>
+                {% else %}
+                <button onclick="markforcheck({{ student.id }})" id="mark-present-{{student.id}}">Mark check</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function markforcheck(studentId) {
+        fetch(`/check/${studentId}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            if (response.ok) {
+                const markElement = document.querySelector(`#mark-present-${studentId}`);
+                if (markElement) {
+                    // Change the class of the element
+                    markElement.className = 'present';
+                    // Optionally, change the ID of the element
+                    markElement.id = `mark-absent-${studentId}`;
+                    // Change the button text to 'Present'
+                    markElement.textContent = 'Present';
+                    // Optionally change the onclick event to mark as absent
+                    markElement.setAttribute('onclick', `markAbsent(${studentId})`);
+                } else {
+                    console.error('Element not found.');
+                }
+            } else {
+                console.error('Failed to mark attendance.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    
+</script>
+{% endblock content %}

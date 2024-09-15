@@ -1,0 +1,131 @@
+/* attendance.css */
+
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-size: 24px;
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Header Section */
+.header-container {
+    background-color: #e6f2ff;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #003366;
+}
+
+.header-container h3 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.header-container p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+/* Button Section */
+.button-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.button {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #005580;
+}
+
+/* Table Section */
+table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.responsive-table th, .responsive-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.responsive-table th {
+    background-color: #003366;
+    color: white;
+}
+
+.responsive-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.responsive-table td {
+    font-size: 16px;
+}
+
+.responsive-table .present {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.responsive-table button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    background-color: #007bff;
+}
+
+.responsive-table button:hover {
+    background-color: #0056b3;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .header-container h3 {
+        font-size: 22px;
+    }
+    
+    .header-container p {
+        font-size: 16px;
+    }
+
+    .button {
+        padding: 8px 15px;
+        margin: 5px;
+    }
+
+    .responsive-table th, .responsive-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
