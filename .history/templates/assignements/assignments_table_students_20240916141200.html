@@ -1,0 +1,45 @@
+{% extends 'base/main.html' %}
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'assignments/assignments_table.css' %}">
+{% endblock css_content %}
+
+{% block content %}
+
+{% include "base/navigation_bar.html" %}
+
+<div class="header">
+    <a href="{% url 'create-assignment' %}" class="create-assignment-btn">Create Assignment</a>
+    <a href="{% url 'assignment-table' classgroup.id  %}" class="create-assignment-btn">assignment Table</a>
+    <a href="{% url 'assignment-table' classgroup.id  %}" class="create-assignment-btn">assignment Table</a>
+    
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Roll no</th>
+            <th>Name</th>
+            {% for ass in assignments %}
+            <th>{{ ass.title }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for std in students %}
+        <tr>
+            <td data-label="Roll no">{{ std.roll_no }}</td>
+            <td data-label="Name">{{ std.name }}</td>
+            {% for ass in assignments %}
+            <td data-label="{{ ass.title }}">
+                {% if students_assignments|get_item:std.id|get_item:ass.id %}
+                <span class="icon">✅</span>
+                {% else %}
+                <span class="icon cross">❎</span>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

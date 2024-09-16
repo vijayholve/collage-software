@@ -1,0 +1,30 @@
+{% extends 'base/main.html' %}
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'assignemnts/assignments_table.css' %}">
+{% endblock css_content %}
+
+{% block content %}
+<table class="styled-table">
+    <tr>
+        <th>Roll No</th>
+        <th>Name</th>
+        {% for ass in assignemnts %}
+        <th>{{ ass.title }}</th>
+        {% endfor %}
+    </tr>
+    {% for std in students %}
+    <tr>
+        <td>{{ std.roll_no }}</td>
+        <td>{{ std.name }}</td>
+        {% for ass_exist in students_assignements %}students_assignments
+            {% if ass_exist %}
+            <td>✅</td>
+            {% else %}
+            <td>❎</td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
