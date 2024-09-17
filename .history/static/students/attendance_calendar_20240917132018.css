@@ -1,0 +1,106 @@
+/* Basic calendar styling */
+.calendar {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+.calendar th, .calendar td {
+    width: 14.28%;
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Header styling */
+.calendar th {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 20px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Day cell styling */
+.calendar td {
+    height: 100px;
+    vertical-align: top;
+    position: relative;
+    font-size: 16px;
+    color: #333;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/* Attendance marks styling */
+.calendar td span {
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.calendar td .present {
+    background-color: #76c7c0; /* Green for present */
+    color: #fff;
+}
+
+.calendar td .absent {
+    background-color: #f76c6c; /* Red for absent */
+    color: #fff;
+}
+
+/* Hover effect */
+.calendar td:hover {
+    background-color: #e8f4fa;
+    transform: scale(1.05);
+}
+
+/* Highlight current day */
+.calendar td.today {
+    background-color: #ffeb3b;
+    font-weight: bold;
+    border: 2px solid #ff9800;
+    box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+.calendar td.holiday {
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: ;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .calendar th, .calendar td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .calendar td {
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar th, .calendar td {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .calendar td {
+        height: 60px;
+    }
+}

@@ -1,0 +1,56 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'students/attendance_calendar.css' %}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+
+<div class="container">
+    <center>
+        <h2>{{month| get_item:today.month }} || ({{today.year}}-25) 
+        </h2>
+    </center>
+    <table border="2" class="calendar">
+        <thead>
+            <tr>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+
+                    
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in weeks %}
+                <tr>
+                    {% for day in week %}
+                        <td class="{% if day and day == today %}today{% endif %} {% if day and day.weekday == 6 %} holiday{% elif day.day in holiday_days%}holiday{% endif %}">
+                            {% if day %}
+                            {{ day|date:"j" }}<br>
+                            {% elif day.weekday == 6 %}
+                            {% if day.day in holiday_days %}
+                                <span class="holiday">Holiday</span>
+                                <span class="holiday">Holiday</span>
+                            {% else %}
+                                {% with attendance=attendance_data|get_item:day %}
+                                    {% if attendance %}
+                                        <span class="present">P</span>
+                                    {% else %}
+                                        <span class="absent">A</span>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endif %}
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

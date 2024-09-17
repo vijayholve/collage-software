@@ -15,7 +15,8 @@ from django.template.loader import render_to_string
 from datetime import datetime, timedelta
 from .task import send_mail_to_all_task_teacher ,send_mail_task , send_mail_to_all_task_students
 from django import template
-xfrom django.http import FileResponse, Http404 ,HttpResponse 
+import pandas as pd
+from django.http import FileResponse, Http404 ,HttpResponse 
 from openpyxl import load_workbook
 from faker import Faker
 from django.contrib.messages import error
