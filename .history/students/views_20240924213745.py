@@ -259,7 +259,10 @@ def id_card(request,id):
     return render(request,'students/id_card.html',content)
 
 
-
+def delete_student(request,id,class_id):
+    student=Student.objects.get(id=id)
+    student.delete()
+    return redirect("class-information",)
 
 def export_data_excel(request, class_id):
     classgroup = ClassGroup.objects.get(id=class_id)

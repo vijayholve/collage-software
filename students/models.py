@@ -87,7 +87,7 @@ class Holiday(models.Model):
     def __str__(self):
         return f"{self.name} on {self.date}"
 
-class Assignment(models.Model):  
+class Assignment(models.Model):   
     title = models.CharField(max_length=255) 
     description = models.FileField('assignment_images/') 
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE) 

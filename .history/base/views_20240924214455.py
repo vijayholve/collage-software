@@ -10,8 +10,7 @@ from .forms import studuntform ,subjectform  ,CustomUserCreationForm ,TeacherFor
 from django.db.models import Q  
 from students.models import CustomUser ,Teacher,Student,Subject,hod  ,Test,TestResult ,ClassGroup
 from django.contrib.messages import error
-from django.views.decorators.cache import never_cache
-
+from dj
 def login_page(request):
     page="login"
     username=request.POST.get("username")
@@ -119,7 +118,7 @@ def _extracted_from_register_page_6(user_form, request):
     login(request,user)
     return redirect('user-type',user_id=user.id ,user_type=user_type)  
 
-@never_cache
+
 def user_panel(request,user_id ,user_type):
     customeuser=CustomUser.objects.get(id=user_id)
     student_form = studuntform()

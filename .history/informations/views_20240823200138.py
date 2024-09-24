@@ -27,7 +27,3 @@ def class_information(request,class_id):
     content={"classgroup":classgroup,"students":students}
     return render(request,"informations/class_information.html",content)
 
-def delete_student(request,id,class_id):
-    student=Student.objects.get(id=id)
-    student.delete()
-    return redirect("class-informations",class_id=class_id)
