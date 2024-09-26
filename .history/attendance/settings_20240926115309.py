@@ -97,7 +97,6 @@ pymysql.install_as_MySQLdb()
 # MYSQL_USER="root"
 # MYSQL_PASSWORD="vijay"
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',

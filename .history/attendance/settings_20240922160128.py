@@ -84,7 +84,7 @@ DATABASES = {
     }
 }
 
-
+# Add this line to enable PyMySQL as the MySQL client:
 import pymysql
 pymysql.install_as_MySQLdb()
 
@@ -97,6 +97,8 @@ pymysql.install_as_MySQLdb()
 # MYSQL_USER="root"
 # MYSQL_PASSWORD="vijay"
 
+# Password validation
+# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

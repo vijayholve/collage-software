@@ -2,19 +2,20 @@
 {% extends "base/main.html" %}
 {% block css_content %}
 {% load static %}
-<link rel="stylesheet" href="{%static 'base/login_page.css' %}?A={{TIME}}">
-{% endblock css_content %}\
+<link rel="stylesheet" href="{% static 'base/login_page.css' %}">
+{% endblock css_content %}
 
-
-{% block content %} 
+{% block content %}
 <div class="login_page">
     <div class="screen">
         <div class="screen__content">
+            <h1 class="title">Create Your Account</h1>
             <form class="login" method="POST" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 
                 {% for f in user_form %}
                 <div class="login__field">
+                    <i class="login__icon fas fa-user"></i>
                     {{ f }}
                     {% if f.errors %}
                     <div class="error">
@@ -30,9 +31,9 @@
                 
                 <button class="button-29" id="btn1">Submit</button>
             </form>
-            <div>
+            <div class="footer">
                 <h2>
-                     <a href="{% url 'login-page' %}">Login</a>
+                    Already have an account? <a href="{% url 'login-page' %}">Login</a>
                 </h2>
             </div>
         </div>
@@ -46,4 +47,3 @@
 </div>
 
 {% endblock content %}
-
