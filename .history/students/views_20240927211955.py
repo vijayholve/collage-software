@@ -100,7 +100,7 @@ def particular_student_attendance(request, sid):
         month=today.month
         
     classgroup = student.classgroup
-    attendance_data = {date: Attendance.objects.filter(student=student, date=date,present=True).exists()
+    attendance_data = {date: Attendance.objects.filter(student=student, date=date,& Q(present=True)).exists()
                        for date in (start_date + timedelta(days=i) for i in range((end_date - start_date).days + 1))}
     dates = [start_date + timedelta(days=i) for i in range((end_date - start_date).days + 1)]
     first_day_of_month = start_date.weekday()

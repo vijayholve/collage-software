@@ -100,7 +100,7 @@ def particular_student_attendance(request, sid):
         month=today.month
         
     classgroup = student.classgroup
-    attendance_data = {date: Attendance.objects.filter(student=student, date=date,present=True).exists()
+    attendance_data = {date: Attendance.objects.filter(student=student, date=date).exists()
                        for date in (start_date + timedelta(days=i) for i in range((end_date - start_date).days + 1))}
     dates = [start_date + timedelta(days=i) for i in range((end_date - start_date).days + 1)]
     first_day_of_month = start_date.weekday()
@@ -142,7 +142,7 @@ def attendance_data_students(request, pk):
             if holiday:
                 student_attendance[date] = f"Holiday - {holiday.name}" 
             else:
-                is_present = Attendance.objects.filter(student=student, date=date,present=True).exists()
+                is_present = Attendance.objects.filter(student=student, date=date).exists()
                 student_attendance[date] = "Present" if is_present else "Absent"
         attendance_data[student.id] = student_attendance
 
@@ -174,7 +174,7 @@ def student_list(request, pk):
     student_attendance = []
     for student in students:
         attendance_exists = Attendance.objects.filter(
-            Q(student=student) & Q(date=today) & Q(student__classgroup=classgroup.id) & Q(present=True)
+            Q(student=student) & Q(date=today) & Q(student__classgroup=classgroup.id)  Q(present=True)
         ).exists() 
         student_attendance.append((student, attendance_exists))
     context = {'student_attendance': student_attendance, "today": today, "classgroup": classgroup}

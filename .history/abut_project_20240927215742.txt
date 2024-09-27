@@ -46,6 +46,5 @@
     Student Scores: The StudentScore model maintains a one-to-one relationship with the AUTH_USER_MODEL, foreign key to the Test model, and includes a score field for tracking exam performance.
 
 env\Scripts\deactivate
-python manage.py runserver
 celery -A attendance beat --loglevel=info
 python -m celery -A attendance.celery worker --pool=solo -l info
