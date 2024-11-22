@@ -1,0 +1,108 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<style>
+    canvas {
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'students/attendance_calendar.css' %}?v={{Time}}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+
+<div class="container">
+    <center>
+        <h2>{{month| get_item:today.month }} || ({{today.year}}-25) 
+        </h2>
+    </center>
+    <table border="2" class="calendar">
+        <thead>
+            <tr>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+
+                    
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in weeks %}
+                <tr>
+                    {% for day in week %}
+                        <td class="{% if day and day == today %}today{% endif %} {% if day and day.weekday == 6 %} holiday{% elif day.day in holiday_days%}holiday{% endif %}">
+                            {% if day %}
+                            {{ day|date:"j" }}<br>
+                            {% if day.day in holiday_days %}
+                                <span class="holiday">(H) {{holiday_days|get_item:day.day}}</span>
+                            {% elif day.weekday == 6 %}
+                                <span class="holiday">(H) Sunday</span>
+                            {% else %}
+                                {% with attendance=attendance_data|get_item:day %}
+                                    {% if attendance %}
+                                        <span class="present">P</span>
+                                    {% else %}
+                                        <span class="absent">A</span>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endif %}
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<canvas id="myChart" width="400" height="400"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script >
+    // Get the context of the canvas element where the chart will be drawn
+const ctx = document.getElementById('myChart').getContext('2d');
+
+// Create the chart
+const myChart = new Chart(ctx, {
+    type: 'bar', // Type of chart: 'bar', 'line', 'pie', 'doughnut', etc.
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+        datasets: [{
+            label: 'Sales Data',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+</script>
+{% endblock content %}

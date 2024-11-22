@@ -22,7 +22,6 @@ def login_page(request):
         except Exception as e:
             messages.error(request,f"error is {e}")
         user=authenticate(request,username=username,password=password)
-
         if user is not None:
             login(request,user)
             return redirect("home")
@@ -179,8 +178,6 @@ def user_panel(request,user_id ,user_type):
     }
     return render(request,'base/user_type.html',content)
 
-
-# TODO Rename this here and in `user_panel`
 def _extracted_from_user_panel_12(arg0, customeuser):
     student = arg0.save(commit=False) 
      

@@ -1,0 +1,106 @@
+/*---------------------------------------
+  NAVIGATION - Slim and Centered Design              
+-----------------------------------------*/
+.navbar {
+    z-index: 9;
+    position: sticky;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--light-color); /* Light background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 10px 20px; /* Reduced padding for compactness */
+}
+
+/* Brand */
+.navbar-brand {
+    font-size: 28px; /* Slightly reduced font size */
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.navbar-brand:hover {
+    color: var(--secondary-color); /* Brand color hover effect */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Navbar Links */
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 0 15px; /* Compact spacing between links */
+}
+
+.navbar-nav {
+    margin-left: auto; /* Align navigation to the right */
+}
+
+.navbar-nav .nav-link {
+    color: var(--dark-gray-color);
+    font-size: 16px; /* Reduce font size for clean layout */
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 10px 15px; /* Compact click area */
+    transition: color 0.3s ease;
+}
+
+/* Hover and Active States */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--secondary-color);
+}
+
+/* Toggler Button */
+.navbar-toggler {
+    border: none;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: transparent; /* Transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background: var(--dark-color);
+    width: 25px;
+    height: 2px;
+    position: relative;
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+
+.navbar-toggler .navbar-toggler-icon:before,
+.navbar-toggler .navbar-toggler-icon:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background: var(--dark-color);
+}
+
+.navbar-toggler .navbar-toggler-icon:before {
+    top: -7px;
+}
+
+.navbar-toggler .navbar-toggler-icon:after {
+    top: 7px;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon {
+    background: var(--secondary-color);
+}
+
+/* Media Queries for Responsive Behavior */
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+        font-size: 18px;
+        padding: 10px 20px; /* Larger padding for bigger screens */
+    }
+
+    .navbar {
+        padding: 10px 50px; /* Increase horizontal padding on laptops */
+    }
+}

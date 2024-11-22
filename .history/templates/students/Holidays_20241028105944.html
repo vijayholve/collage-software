@@ -1,0 +1,25 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'students/holiday.css' %}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+<div class="holiday-container">
+    <div class="holiday-card">
+        <div class="holiday-header">
+            <h1>🎉 Enjoy Your Holiday! 🎉</h1>
+        </div>
+        <div class="holiday-body">
+            <p class="holiday-name">{{ holiday.name }}</p>
+        </div>
+        <div class="holiday-footer">
+            <p>Wishing you a day filled with joy and relaxation!</p>
+            <div class="footer-deco">
+                <a href="{% url '' %}"></a>
+                <input type="button" value="table" class="btn-primary">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

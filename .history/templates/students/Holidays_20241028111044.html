@@ -1,0 +1,27 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{% static 'students/holiday.css' %}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+<div class="holiday-container">
+    <div class="holiday-card">
+        <div class="holiday-header">
+            <h1>🎉 Enjoy Your Holiday! 🎉</h1>
+        </div>
+        <div class="holiday-body">
+            <p class="holiday-name">{{ holiday.name }}</p>
+        </div>
+        <div class="holiday-footer">
+            <p>Wishing you a day filled with joy and relaxation!</p>
+            <div class="footer-deco">
+                <a href="{% url 'attendance-data' classgroup.id %}" value class="btn btn-primary">
+            </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+    }
+
+    #myPieChart {
+        max-width: 500px;
+        max-height: 500px;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 20px;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'students/attendance_calendar.css' %}?v={{Time}}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+
+<div class="container">
+    <center>
+        <h2>{{month| get_item:today.month }} || ({{today.year}}-25) 
+        </h2>
+    </center>
+    <table border="2" class="calendar">
+        <thead>
+            <tr>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+
+                    
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in weeks %}
+                <tr>
+                    {% for day in week %}
+                        <td class="{% if day and day == today %}today{% endif %} {% if day and day.weekday == 6 %} holiday{% elif day.day in holiday_days%}holiday{% endif %}">
+                            {% if day %}
+                            {{ day|date:"j" }}<br>
+                            {% if day.day in holiday_days %}
+                                <span class="holiday">(H) {{holiday_days|get_item:day.day}}</span>
+                            {% elif day.weekday == 6 %}
+                                <span class="holiday">(H) Sunday</span>
+                            {% else %}
+                                {% with attendance=attendance_data|get_item:day %}
+                                    {% if attendance %}
+                                        <span class="present">P</span>
+                                    {% else %}
+                                        <span class="absent">A</span>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endif %}
+                        {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% endblock content %}

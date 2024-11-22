@@ -42,10 +42,10 @@ def send_absence_emails(self):
     
     absentees = Attendance.objects.filter(date=today, present=False)
     
-    # Send email notifications to absent students
+    # Send email absent students
     for record in absentees:
         student = record.student
-        subject = 'Attendance Notification'  # Make sure this is a string, not a tuple
+        subject = 'Attendance Notification'  
         content = f'Dear {student.name},\n\nYou were marked absent for the subject on {today}. Please contact your teacher if this is a mistake.'  # Make sure this is a string, not a tuple
         
         if student.user:
@@ -55,7 +55,6 @@ def send_absence_emails(self):
                 settings.EMAIL_HOST_USER,
                 [student.user.email],
             )
-            # else:
-            #     print("Student does not have user email address.")
+           
     
     print(f"Sent absence notifications to {absentees.count()} students for {today}")

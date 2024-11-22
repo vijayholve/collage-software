@@ -1,0 +1,33 @@
+<html>
+    <head>
+        {% load static %}
+        {% block css_content %}
+        
+        {% endblock css_content %}
+        <style>
+            body {
+                font-family: 'lato', sans-serif;
+              }
+        </style>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="icon" href="/media/collage/th.jpeg" type="image/x-icon">
+        <title>Sm Joshi Collage</title>
+        <link rel="stylesheet" href="{% static 'base/button.css'%}">
+        <link rel="stylesheet" href="{% static 'base/navbar.css'%}?v={{TIME}}">
+        <link rel="stylesheet" href="{% static 'base/search.css'%}?v={{time}}"> 
+        <link rel="stylesheet" href="{% static 'base/messages.css'%}?v={{time}}"> 
+        
+        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+    </head>
+    <body>
+        {% block content %} {% endblock content %} 
+        
+    </body>
+</html>
