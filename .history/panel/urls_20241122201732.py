@@ -1,1 +1,0 @@
-from . import def VIEWNAME(request):
