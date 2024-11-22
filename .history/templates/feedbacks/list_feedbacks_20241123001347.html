@@ -1,0 +1,43 @@
+{% extends 'base/main.html' %}
+
+{% block css_content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'feedbacks/list_feedback.css' %}">
+{% endblock css_content %}
+
+{% block content %}
+{% include "base/navigation_bar.html" %}
+
+<div class="container">
+    <div class="header">
+        <h1>Feedback Categories</h1>
+        <a href="{% url 'create-categerory-feedback' %}" class="create-feedback-btn">Create Category Feedback</a>
+    </div>
+
+    <div class="feedback-section">
+        <h2>New Categories</h2>
+        <div class="feedback-list">
+            {% for feedback in categerory %}
+            <div class="feedback-card new-feedback">
+                <div class="card-header">
+                    <h3 class="feedback-name">{{ feedback.name }}</h3>
+                    <p class="feedback-description">{{ feedback.description }}</p>
+                </div>
+                <a href="{% url 'submit-feedbacks' feedback.id %}">
+                    <div class="card-body">
+                        <p class="feedback-text">Submit Feedback</p>
+                    </div>
+                </a>
+                {% if request.user.user_type ==  'admin' %}
+
+                <a href="{% url 'categerory-feedback' feedback.id %}">
+                    <div class="card-footer">
+                        <span class="details">Details</span>
+                    </div>
+                </a>
+                endif
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

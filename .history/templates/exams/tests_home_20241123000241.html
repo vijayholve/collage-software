@@ -1,0 +1,63 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'exams/test_home.css' %}?v={{Time}}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+<div class="container mt-4">
+    <div class="mb-3">
+        <a href="{% url 'exam-create' %}" class="btn btn-primary">Create Exam</a>
+    </div>   
+
+    {% for test in tests %}
+    {% with test.test_date|date:"Y-m-d" as test_date %}
+    {% with test.start_time|time:"H:i:s" as test_start_time %}
+    {% with test.end_time|time:"H:i:s" as test_end_time %}
+    {% if test_date == now|date:"Y-m-d" and test_start_time <= now|time:"H:i:s" and now|time:"H:i:s" <= test_end_time %}
+    
+    <a href="{% url 'take_test' test.id %}">
+        <div class="card mb-3 live-test">
+            <div class="card-body">
+                <h5 class="card-title">{{ test.title }} <span class="live-indicator">(Started)</span></h5>
+                <p class="card-text"><strong>Subject:</strong> {{ test.subject }}</p>
+                <p class="card-text"><strong>Dates:</strong>{{ test.test_date }}</p>
+                <p class="card-text"><strong>Class Group:</strong> {{ test.classgroup }}</p>
+                <p class="card-text"><strong>Conducted By:</strong> {{ test.conducted_by }}</p>
+                <p class="card-text time-slot"><strong>{{ test.test_date }}:</strong> {{ test.start_time.hour }}:{{ test.start_time.minute }} To {{ test.end_time.hour }}:{{ test.end_time.minute }}</p>
+                {% if request.user.user_type == 'admin' %}
+                
+                {% endif %}
+                <p class="card-text actions">
+                    <strong><a href="{% url 'delete-exam' test.id %}">Delete</a></strong> ::
+                    <strong><a href="{% url 'update-exam' test_id=test.id %}">Update</a></strong> ::
+                    <strong><a href="{% url 'test_detail' test.id %}">Detail</a></strong> ::
+                    <strong><a href="{% url 'students-results' test.id %}">Result</a></strong>
+                </p>
+            </div>
+        </div>
+    </a>
+    {% else %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ test.title }}</h5>
+            <p class="card-text"><strong>Subject:</strong> {{ test.subject }}</p>
+            <p class="card-text"><strong>Dates:</strong>{{ test.test_date }}</p>
+            <p class="card-text"><strong>Class Group:</strong> {{ test.classgroup }}</p>
+            <p class="card-text"><strong>Conducted By:</strong> {{ test.conducted_by }}</p>
+            <p class="card-text time-slot"><strong>{{ test.test_date }}:</strong> {{ test.start_time.hour }}:{{ test.start_time.minute }} To {{ test.end_time.hour }}:{{ test.end_time.minute }}</p>
+            <p class="card-text actions">
+                <strong><a href="{% url 'delete-exam' test.id %}">Delete</a></strong> ::
+                <strong><a href="{% url 'update-exam' test_id=test.id %}">Update</a></strong> ::
+                <strong><a href="{% url 'test_detail' test.id %}">Detail</a></strong> ::
+                <strong><a href="{% url 'students-results' test.id %}">Result</a></strong>
+            </p>
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+    {% endwith %}
+    {% endwith %}
+    {% endfor %}
+</div>
+{% endblock content %}

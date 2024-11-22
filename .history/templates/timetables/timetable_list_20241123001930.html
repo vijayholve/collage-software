@@ -1,0 +1,49 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'timetables/timetable_list.css' %}">
+{% endblock css_content %}
+{% block content %}
+{% include "base/navigation_bar.html" %}
+{% if request.user.user_type ==  'admin' %}
+
+<div class="my-4">
+    <h2>
+        <a href="{% url 'create-timetable' classid=classgroup.id %}" class="btn button-green">Create Timetable</a>
+    </h2>
+    <h2>
+        <a href="{% url 'create-timeslot' %}" class="btn button-green">Create Slots</a>
+    </h2>
+</div>
+endif
+<h1 class="my-4">Timetable of {{ classgroup.year }} - {{ classgroup.name }}</h1>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Time Slot</th>
+                {% for day in days_of_week %}
+                <th>{{ day }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for slot in time_slots %}
+            <tr>
+                <td>{{ slot.start_time }} - {{ slot.end_time }}</td>
+                {% for day in days_of_week %}
+                <td>
+                    {% with entries=timetable|get_item:day|get_item:slot %}
+                    {% for entry in entries %}
+                        {{ entry.subject.name }} ({{ entry.teacher.name }})<br>
+                        {% comment %} {{ entry.classgroup.name }} {% endcomment %}
+                    {% endfor %}
+                    {% endwith %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
