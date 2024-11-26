@@ -99,11 +99,12 @@ def test_detail(request, pk):
 @login_required(login_url="login-page")
 def take_test(request, test_id):
     test = get_object_or_404(Test, id=test_id)
-    student =request.user 
+    student =srequest.user 
     questions = test.questions.all()
     student_score=StudentScore.objects.filter(test=test)
     if any(student == std.student for std in student_score):
         return redirect("students-results",test_id=test.id)
+    
     if request.method == 'POST':
         score = 0
         total_questions = test.questions.count()

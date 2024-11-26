@@ -104,6 +104,7 @@ def take_test(request, test_id):
     student_score=StudentScore.objects.filter(test=test)
     if any(student == std.student for std in student_score):
         return redirect("students-results",test_id=test.id)
+    IF 
     if request.method == 'POST':
         score = 0
         total_questions = test.questions.count()

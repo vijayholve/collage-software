@@ -48,7 +48,7 @@ def admin_panel(request):
                 student__classgroup__name_id=cls.id,
                 present=True,
                 date__range=(start_date, end_date)
-            ).count()   
+            ).count()
 
             total_absent = (effective_days * total_students) - total_present
 

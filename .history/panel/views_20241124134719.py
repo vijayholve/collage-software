@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.db.models import Count
-from students.models import Classes,Attendance, ClassGroup,Student,Teacher,Holiday
+from students.models import Classes,Attendance, clas,Student,Teacher,Holiday
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
@@ -48,7 +48,7 @@ def admin_panel(request):
                 student__classgroup__name_id=cls.id,
                 present=True,
                 date__range=(start_date, end_date)
-            ).count()   
+            ).count()
 
             total_absent = (effective_days * total_students) - total_present
 
