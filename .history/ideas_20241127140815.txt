@@ -1,6 +1,6 @@
 1)user can send a request to teacher for present.
 2)teacher profile there have there classes and present etc 
-3)admin profile to all access ✅
-4)Points to students for there attendance 
-5)attendance graph ✅
+3)admin profile to all access
+4)Points to students for there attendance
+5)attendance graph 
 

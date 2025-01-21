@@ -1,6 +1,8 @@
 from pathlib import Path
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'cizu0lzvi#y+(+^72jdam^tcr#uw!&!gu#ydfnjf@z^+)5h)1e'
 
 DEBUG = True
@@ -15,8 +17,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nost'
-    
     'students.apps.StudentsConfig',
     'base.apps.BaseConfig',
     'assignments.apps.AssignmentsConfig',
@@ -71,6 +71,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'attendance.wsgi.application'
 
 
+# Database
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
      'default': {
@@ -147,6 +149,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings.py
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Default primary key field type
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

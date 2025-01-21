@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'cizu0lzvi#y+(+^72jdam^tcr#uw!&!gu#ydfnjf@z^+)5h)1e'
 
@@ -71,6 +72,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'attendance.wsgi.application'
 
 
+# Database
+# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
      'default': {
