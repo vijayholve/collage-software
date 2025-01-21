@@ -1,8 +1,6 @@
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'cizu0lzvi#y+(+^72jdam^tcr#uw!&!gu#ydfnjf@z^+)5h)1e'
 
 DEBUG = True
@@ -17,7 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
+    'whitenoise.runserver_nostatic'
     
     'students.apps.StudentsConfig',
     'base.apps.BaseConfig',
@@ -73,8 +71,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'attendance.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
      'default': {

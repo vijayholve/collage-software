@@ -17,8 +17,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
-    
     'students.apps.StudentsConfig',
     'base.apps.BaseConfig',
     'assignments.apps.AssignmentsConfig',
