@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from datetime import datetime,timedelta  
 from django.conf import settings 
-
 class Classes(models.Model):
     name=models.CharField(max_length=100)
     def __str__(self):

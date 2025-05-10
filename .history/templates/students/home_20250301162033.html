@@ -1,0 +1,91 @@
+{% extends "base/main.html" %}
+{% load static %}
+{% block css_content %}
+<link rel="stylesheet" href="{% static 'students/home.css' %}?v={{time}}">
+{% endblock css_content %}
+{% block content %}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+<style>
+    body{
+        background-color: white !important;
+    }
+</style>
+{% comment %} {% include "base/navigation_bar.html" %} {% endcomment %}
+{% include "base/navigation_bar.html" %}
+    
+ <header class="site-header">
+     <div class="logo-container">
+        <img src="/media/collage/th.jpeg"
+         alt="S.M. Joshi College Logo"
+          class="logo">
+
+        <h1>Department of Computer Science & Application
+        </h1>
+    </div>
+    <p>SM Joshi college</p>
+</header> 
+
+<section class="intro">
+    <div class="intro-content">
+        <img src="\media\collage\copy-1725213216-20240319_143951-(1).jpg" alt="College Image" class="college-image">
+        <div class="info">
+            <h2>About Department</h2>
+            <p>Welcome to the Department of BBA(Computer Application) at S.M. Joshi College, Hadapsar. Our department is designed to offers a unique blend of business and computer science education, equipping students with the skills to excel in today's technology-driven business landscape.
+
+                Department of  Bachelors of Business Administration in Computer Application was established in academic year 2006-2007. It is one of the most significant departments in the college. At present more than 500 students have enrolled for various courses offered by the department. </p>
+        </div>
+    </div>
+</section>
+
+{% include "./home/team.html" %}
+{% include "./home/services.html" %}
+{% include './home/testimational.html' %}
+
+
+{% comment %} <div class="hod-section"> 
+    <div class="hod-card">
+        <div class="hod-info">
+            <h2 class="hod-name">Dr. [HOD Name]</h2>
+            <p class="hod-about">
+                Passionate educator and researcher with expertise in [mention field].
+            </p>
+        </div>
+        <div class="hod-image-container">
+            <img src="hod-image.jpg" alt="HOD Image" class="hod-image">
+        </div>
+    </div>
+</div> {% endcomment %}
+
+
+{% comment %} <section class="principal-desk">
+    <h2>Principal’s Desk</h2>
+    <div class="principal-info">
+        <img src="/media/collage/copy-1712119750-SM_JOSHI_NEW-principle.jpg" alt="Principal's Image" class="principal-image">
+        <div class="principal-text">
+            <p>
+                Welcome you all in our NAAC accredited "A" Grade college run by Rayat Shikshan Sanstha, one of the biggest educational institute in Asia. We are trying our level best to impart the quality education to the students from the poor, downtrodden, economically and socially weaker sections of the society. The college has sufficient infrastructure with well-equipped laboratories, Computer Lab, Digital classrooms, Women's Hostel, indoor stadium and playgrounds. We promote use of ICT in teaching, learning and administration. The students are provided access to the library on all days. Beside this, ...
+            </p>
+            <p class="principal-name">Dr. Kishor Kakde (M.Sc. Ph.D.)</p>
+        </div>
+    </div>
+</section> {% endcomment %}
+
+{% comment %} <section class="recruiters">
+    <h2>Our Major Recruiters</h2>
+    <div class="recruiters-list">
+        <img src='/media/collage/TCS.png' alt="Recruiter 1">
+        <img src='/media/collage/TechMahindra.png' alt="Recruiter 2">
+        <img src='/media/collage/bvg.png' alt="Recruiter 3">
+        <!-- Add more recruiter logos as needed -->
+    </div>
+</section> {% endcomment %}
+
+
+
+{% include './home/footer.html' %}
+{% endblock content %}
