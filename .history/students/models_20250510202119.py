@@ -7,10 +7,11 @@ from django.conf import settings
 class Classes(models.Model):
     name=models.CharField(max_length=100)
     def __str__(self):
-        return f"{self.name}" 
+        return f"{self.name} " 
 class ClassGroup(models.Model):
     name = models.ForeignKey(Classes,on_delete=models.SET_NULL,null=True)
     year = models.CharField(max_length=100, choices=[('FY', 'First Year'), ('SY', 'Second Year'), ('TY', 'Third Year')])
+
     def __str__(self):
         return f"{self.name} - {self.year}"
 class CustomUser(AbstractUser):
@@ -32,7 +33,7 @@ class hod(models.Model):
 class Subject(models.Model):
     name = models.CharField(max_length=100)
     # code = models.CharField(max_length=10)
-    
+
     def __str__(self):
         return self.name
 
@@ -43,10 +44,11 @@ class Student(models.Model):
     contact = models.CharField(max_length=150,null=True ,blank=True )  
     email=models.EmailField(null=True ,blank=True) 
     subject=models.ManyToManyField(Subject) 
-    profile = models.ImageField(upload_to='profile_images/', default='profile_images/default.jpeg')
+    profile=models.ImageField(upload_to='profile_images/', default=rf"/profile_images/default.jpeg",
+                             null=True,blank=True) 
     classgroup=models.ForeignKey(ClassGroup,on_delete=models.SET_NULL,null=True,blank=True)
     def __str__(self):
-        return f"{self.id} is {self.roll_no}  {self.name} roll no is "  
+        return f"{self.id} is {self.name}"  
     def schedule_welcome_message(self):
         # Schedule the task to run 1 minute from now
         eta = datetime.now() + timedelta(minutes=1)
@@ -78,14 +80,6 @@ class Attendance(models.Model):
     subject=models.ForeignKey(Subject,on_delete=models.SET_NULL,null=True ,blank=True ) 
     def __str__(self):
         return f"{self.student.name} - {self.date} - {'Present' if self.present else 'Absent'}"
-
-class CameraConfiguration(models.Model):
-    name = models.CharField(max_length=100, unique=True, help_text="Give a name to this camera configuration")
-    camera_source = models.CharField(max_length=255, help_text="Camera index (0 for default webcam or RTSP/HTTP URL for IP camera)")
-    threshold = models.FloatField(default=0.6, help_text="Face recognition confidence threshold")
-
-    def __str__(self):
-        return self.name
 
 class Holiday(models.Model):
     name = models.CharField(max_length=100)  # Name of the holiday
