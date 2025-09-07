@@ -18,7 +18,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic', #Make sure to add this 
-    
     'students.apps.StudentsConfig',
     'base.apps.BaseConfig',
     'assignments.apps.AssignmentsConfig',
@@ -92,15 +91,6 @@ DATABASES = {
 import pymysql
 pymysql.install_as_MySQLdb()
 
-# DEBUG=True
-# DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
-
-# # MySQL settings
-# MYSQL_ROOT_PASSWORD=your-mysql-root-password
-# MYSQL_DATABASE=
-# MYSQL_USER="root"
-# MYSQL_PASSWORD="vijay"
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -118,8 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
+
 
 LANGUAGE_CODE = 'en-us'
 
@@ -132,7 +121,6 @@ SITE_ID = 1
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 import os
 STATIC_URL = 'static/'
@@ -143,13 +131,8 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# settings.py
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -177,10 +160,6 @@ CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
-# Only include SSL configuration if using SSL
-# CELERY_BROKER_USE_SSL = {
-#     'ssl_cert_reqs': ssl.CERT_NONE  # Adjust based on your security requirements
-# }
 
 timezone = 'Asia/Kolkata'
 accept_content = ['json']

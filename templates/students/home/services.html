@@ -1,0 +1,139 @@
+
+{% block css_content %}
+	
+
+<!-- <link rel="stylesheet" href="css/normalize.css"> -->
+
+<style>
+	.Feautes{
+		padding-top:0;
+	}
+	.Feautes.index2{
+		padding-top:100px;
+	}
+	.Feautes.testimonial-page{
+		padding-top:100px;
+	}
+	.Feautes .single-features{
+		text-align:center;
+		position:relative;
+		padding:10px 20px;
+	}
+	.Feautes .single-features::before {
+		position: absolute;
+		content: "";
+		right: -72px;
+		top: 60px;
+		width: 118px;
+		border-bottom: 3px dotted #1a76d1;
+	}
+	.Feautes .single-features.last::before{
+		display:none;
+	}
+	.Feautes .single-features .signle-icon{
+		position:relative;
+	}
+	.Feautes .single-features .signle-icon i{
+		font-size:50px;
+		color:#1a76d1;
+		position:absolute;
+		left:50%;
+		margin-left:-50px;
+		top:0;
+		height:100px;
+		width:100px;
+		line-height:100px;
+		text-align:center;
+		border:1px solid #dddddd;
+		border-radius:100%;
+		-webkit-transition:all 0.4s ease;
+		-moz-transition:all 0.4s ease;
+		transition:all 0.4s ease;
+	}
+	.Feautes .single-features:hover .signle-icon i{
+		background:#1A76D1;
+		color:#fff;
+		border-color:transparent;
+	}
+	.Feautes .single-features h3{
+		padding-top: 128px;
+		color:#2C2D3F;
+		font-weight:600;
+		font-size:21px;
+	}
+	.Feautes .single-features p {
+		margin-top: 20px;
+	}
+
+	
+	.signle-icon i {
+		font-size: 50px;
+		color: #1a76d1;
+		transition: all 0.4s ease;
+		padding-top: 20px;
+	}
+	
+	.Feautes .single-features:hover .signle-icon i {
+		background: #1A76D1;
+		color: #fff;
+		border-color: transparent;
+	}
+	
+</style>
+{% endblock css_content %}
+
+    	<!-- Start Feautes -->
+	<!-- Start Feautes -->
+<section class="Feautes section">
+	<div class="container">
+		<div class="row">
+			<div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+				<h6 class="position-relative d-inline text-primary ps-4">Our Services</h6>
+				<h2 class="mt-2">See Our Services</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-12">
+				<!-- Start Single features -->
+				<div class="single-features">
+					<div class="signle-icon">
+						<i class="bi bi-briefcase"></i> <!-- Icon for Internships & Placements -->
+					</div>
+					<h3>Internships & Placements</h3>
+					<p >
+						Our placement cell connects students with top recruiters and provides internship opportunities for hands-on experience.
+					</p>
+				</div>
+				<!-- End Single features -->
+			</div>
+			<div class="col-lg-4 col-12">
+				<!-- Start Single features -->
+				<div class="single-features">
+					<div class="signle-icon">
+						<i class="bi bi-book"></i> <!-- Icon for Library & Research -->
+					</div>
+					<h3>Library & Research</h3>
+					<p>Our well-equipped library offers extensive study materials, research papers, and online databases for students and faculty.</p>
+				</div>
+				<!-- End Single features -->
+			</div>
+			<div class="col-lg-4 col-12">
+				<!-- Start Single features -->
+				<div class="single-features last">
+					<div class="signle-icon">
+						<i class="bi bi-house-door"></i> <!-- Icon for Campus Facilities -->
+					</div>
+					<h3>Campus Facilities</h3>
+					<p>
+						Enjoy modern classrooms, Wi-Fi-enabled campus, cafeteria, medical support, and transport services.
+					</p>
+				</div>
+				<!-- End Single features -->
+			</div>
+		</div>
+	</div>
+</section>
+<!--/ End Feautes -->
+
+		<!--/ End Feautes -->
+    

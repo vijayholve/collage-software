@@ -26,6 +26,9 @@ FeedbackOption,
 FeedbackResponse,
 Holiday,
 ]
+from django.contrib import admin
+from .models import CameraConfiguration
 
+admin.site.register(CameraConfiguration)
 for model in data:
     admin.site.register(model)

@@ -466,3 +466,209 @@ def Holiday_page(request,classid):
     content={"holiday":holiday,
              "classgroup":classgroup}
     return render(request,"students/Holidays.html",content)
+
+
+
+
+
+import os
+import cv2
+import numpy as np
+import torch
+import base64
+import threading
+import time
+
+from datetime import datetime
+from django.conf import settings
+from django.shortcuts import render, redirect
+from django.core.files.base import ContentFile
+from django.utils import timezone
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+from facenet_pytorch import MTCNN, InceptionResnetV1
+
+from .models import Student, Attendance, Subject, CameraConfiguration
+
+
+# Initialize face detection and recognition models
+mtcnn = MTCNN(keep_all=True)
+resnet = InceptionResnetV1(pretrained='vggface2').eval()
+
+
+
+def detect_and_encode(image):
+    """Detect and encode faces in an image."""
+    with torch.no_grad():
+        boxes, _ = mtcnn.detect(image)
+        if boxes is not None:
+            faces = []
+            for box in boxes:
+                face = image[int(box[1]):int(box[3]), int(box[0]):int(box[2])]
+                if face.size == 0:
+                    continue
+                face = cv2.resize(face, (160, 160))
+                face = np.transpose(face, (2, 0, 1)).astype(np.float32) / 255.0
+                face_tensor = torch.tensor(face).unsqueeze(0)
+                encoding = resnet(face_tensor).detach().numpy().flatten()
+                faces.append(encoding)
+            return faces
+    return []
+
+def encode_uploaded_images():
+    """Load known student face encodings."""
+    encodings = []
+    names = []
+    students = Student.objects.all()
+    for student in students:
+        img_path = os.path.join(settings.MEDIA_ROOT, str(student.profile))
+        img = cv2.imread(img_path)
+        if img is None:
+            continue
+        rgb_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        face_enc = detect_and_encode(rgb_img)
+        if face_enc:
+            encodings.extend(face_enc)
+            names.append(student.name)
+    return encodings, names
+
+def recognize_faces(known_encodings, known_names, test_encodings, threshold=0.6):
+    """Compare test encodings with known ones and return recognized names."""
+    recognized = []
+    for test_enc in test_encodings:
+        distances = np.linalg.norm(known_encodings - test_enc, axis=1)
+        min_index = np.argmin(distances)
+        if distances[min_index] < threshold:
+            recognized.append(known_names[min_index])
+        else:
+            recognized.append("Not Recognized")
+    return recognized
+
+def capture_student(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone_number')
+        student_class = request.POST.get('student_class')
+        image_data = request.POST.get('image_data')
+
+        if image_data:
+            header, encoded = image_data.split(',', 1)
+            image_file = ContentFile(base64.b64decode(encoded), name=f"{name}.jpg")
+
+            Student.objects.create(
+                name=name,
+                email=email,
+                phone_number=phone,
+                student_class=student_class,
+            )
+            return redirect('selfie_success')
+    return render(request, 'capture_student.html')
+
+
+def selfie_success(request):
+    return render(request, 'selfie_success.html')
+
+
+# ---------- FACE RECOGNITION AND ATTENDANCE ----------
+
+def capture_and_recognize(request):
+    stop_events = []
+    threads = []
+    windows = []
+    errors = []
+
+    subject_id = request.GET.get('subject_id')  # Example: ?subject_id=1
+    subject = None
+    if subject_id:
+        subject = Subject.objects.filter(id=subject_id).first()
+
+    def process_camera(cam_config, stop_event):
+        cap = None
+        try:
+            source = cam_config.camera_source.strip()
+            if source.isdigit():
+                cap = cv2.VideoCapture(int(source))
+            else:
+                cap = cv2.VideoCapture(source + "/video" if not source.endswith("/video") else source)
+
+            if not cap.isOpened():
+                raise Exception(f"Cannot open camera: {cam_config.name}")
+
+
+            win_name = f"Recognition - {cam_config.name}"
+            windows.append(win_name)
+
+            known_encs, known_names = encode_uploaded_images()
+
+            while not stop_event.is_set():
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                test_encs = detect_and_encode(rgb)
+
+                if test_encs and known_encs:
+                    results = recognize_faces(np.array(known_encs), known_names, test_encs, cam_config.threshold)
+
+                    for name, box in zip(results, mtcnn.detect(rgb)[0]):
+                        if box is not None:
+                            (x1, y1, x2, y2) = map(int, box)
+                            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                            cv2.putText(frame, name, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
+
+                            if name != "Not Recognized":
+                                student = Student.objects.filter(name=name).first()
+                                if student:
+                                    today = datetime.now().date()
+                                    existing = Attendance.objects.filter(student=student, date=today, subject=subject).first()
+                                    if not existing:
+                                        Attendance.objects.create(
+                                            student=student,
+                                            date=today,
+                                            present=True,
+                                            subject=subject
+                                        )
+                                        cv2.putText(frame, f"{name} marked present", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+
+                cv2.imshow(win_name, frame)
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    stop_event.set()
+                    break
+        except Exception as e:
+            errors.append(f"{cam_config.name}: {str(e)}")
+        finally:
+            if cap:
+                cap.release()
+            cv2.destroyWindow(win_name)
+    try:
+        cam_configs = CameraConfiguration.objects.all()
+        if not cam_configs.exists():
+            raise Exception("No cameras configured in admin panel.")
+        for cam_config in cam_configs:
+            stop_event = threading.Event()
+            stop_events.append(stop_event)
+            t = threading.Thread(target=process_camera, args=(cam_config, stop_event))
+            threads.append(t)
+            t.start()
+        while any(t.is_alive() for t in threads):
+            time.sleep(1)
+
+    except Exception as e:
+        errors.append(str(e))
+
+    finally:
+        for event in stop_events:
+            event.set()
+
+        for win in windows:
+            if cv2.getWindowProperty(win, cv2.WND_PROP_VISIBLE) >= 1:
+                cv2.destroyWindow(win)
+
+    if errors:
+        return render(request, 'base/error.html', {'error_message': '\n'.join(errors)})
+
+    return redirect('home')
+
+

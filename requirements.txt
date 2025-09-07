@@ -33,4 +33,6 @@ redis
 openpyxl
 mysqlclient 
 django-allauth
-matplotlib
+matplotlib 
+opencv-python 
+opencv-contrib-python
